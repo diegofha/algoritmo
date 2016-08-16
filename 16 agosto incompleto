@@ -1,0 +1,35 @@
+#include <iostream>
+#include <conio.h>
+#include <math.h>
+using namespace std;
+
+
+
+int unirnumeros(int a,int b){
+int nro,ret=0;
+
+	while(b>0){
+		nro=b%10;
+		ret=(a*10)+nro;
+		b=b/10;
+	         }
+	return (ret);
+}
+void main(){
+	int a,b,r;
+	cout<<"introducir numeros ";
+	cin>>a;
+	cin>>b;
+	r=unirnumeros(a,b);
+	cout<<"la union de los digitos es: "<<endl<<r;
+	getch();
+}
+//int concatenar(int a,int b){
+//return(a*powf(10,contardigitos(b))+b);}
+//void main(){
+int nro,nro2,r;
+cout<<"introducir dos numeros:";
+cin>>nro;
+cin>>nro2;
+r=concatenar(a,b);
+cout<<"el resultado es --->"<<r;
