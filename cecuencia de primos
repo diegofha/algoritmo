@@ -1,0 +1,42 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+bool numprimos(int n)
+{int i;
+bool k=true;
+for(i=2;i<n;i++){
+	if(n%i==0)
+	{k=false;
+	}
+}
+return(k);
+}
+int obtenernumprimo(int n){
+	int c=0,cp=0;
+	while(cp<n){
+		c++;
+		if(numprimos(c)==true){
+			cp++;}
+	}
+			return(c);
+    }
+
+
+
+
+	void mostrarnumprimo(int n){
+		
+	int i;
+	for(i=1;i<=n;i++){
+		cout<<obtenernumprimo(i);
+	
+	    }
+	}
+	void main(){
+		int n;
+		cout<<"ingrese secuencia de numeros ";
+		cin>>n;
+		mostrarnumprimo(n);
+		getch();
+	}
