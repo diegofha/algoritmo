@@ -1,0 +1,40 @@
+//secuencia 1 1 2 3 2 4 5 3 6 7 5 8 9 7 10 11 cuando n=16
+//tarea secuencia impares,primos,pares
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int verifprimo(int n){
+	int i;
+	bool k=true;
+    for(i=2;i<n;i++){
+	if(n%i==0)
+	{k=false;
+	}
+}
+return(k);
+}
+
+void mostrarsec(int n){
+	int k=1,
+		while(i<n){
+			if(k%2!=0)
+			{ cout<<k;
+			}
+			else {
+				if(verifprimo(k)==true){
+					cout<<k;
+				}
+				else{
+
+
+
+
+
+void main(){
+	int n
+
+		cout<<"ingrese numero de la secuencia";
+	    cin>>n;
+
