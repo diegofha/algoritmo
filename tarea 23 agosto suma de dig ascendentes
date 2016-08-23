@@ -1,0 +1,29 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+int funcioninvertir(int n){
+	int m=0,nro;
+	while(n>0){
+		m=(m*10)+(n%10);
+		n=n/10;}
+	return (m);
+}
+
+void main (){
+	int n,may=0,s=0,d,nro;
+	cout<<"ingrese numero :";
+	cin>>n;
+	n=funcioninvertir(n);
+	while(n>0){
+		nro=n%10;
+		if(nro>=may){
+			s=s+nro;
+			may=nro;
+		            }
+		n=n/10;
+	 }
+	cout<<"la suma de los digitos en forma ascendente es--->";
+	cout<<s;
+	getch();
+}
