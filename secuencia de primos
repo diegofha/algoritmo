@@ -1,0 +1,38 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+bool numprimos(int n)
+{int i;
+bool k=true;
+for(i=2;i<n;i++){
+	if(n%i==0)
+	{k=false;
+	}
+}
+return(k);
+}
+
+
+void mostrarprimo(int n)
+	{int i,k=1;
+	for(i=0;i<n;i++){
+			if(numprimos(k)==true)
+			{
+				cout<<k;
+				k++;
+			}
+			else{
+				i=i-1;
+			}
+		
+	}
+}
+void main(){
+	int n;
+		cout<<"ingrese numero :";
+	    cin>>n;
+		mostrarprimo(n);
+			getch();
+  
+}
