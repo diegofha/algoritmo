@@ -1,0 +1,69 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int contardigitos (int n);
+int sumardigitos (int n);
+void main(){
+	int n,op,r;
+	
+cout<<"ingrese numero : ";
+cin>>n;
+
+	do
+  {
+	cout<<endl<<"---*MENU*---"<<endl;
+	cout<<"============"<<endl;
+	cout<<endl<<"1.-sumar los digitos del numero";
+	cout<<endl<<"2.-contar los digitos del numero";
+	cout<<endl<<"0.-salir";
+	cout<<endl<<"elija una opcion: "<<endl;
+	cin>>op;
+	switch(op)
+	{
+	case 1: 
+		r=sumardigitos(n);
+		cout<<"la suma de los digitos es :" <<r<<endl;
+		break;
+		
+	case 2: 
+		r=contardigitos(n);
+		cout<<"el numero de digitos es :"<<r<<endl;
+		break;
+		
+	case 0: cout<<"salir"<<endl;
+		break;
+	default :cout<<"-----ERROR-----!!!!"<<endl;
+		     cout<<"tecla no prevista"<<endl;
+		break;
+		
+	};
+  }
+ while(op!=0);
+ getch;
+ 
+}
+
+
+     int contardigitos(int n)
+		{
+			int c=0;
+				while(n>0) 
+				{   n=n/10;
+					c++;
+		        }
+			return(c);
+			
+		}
+
+   int  sumardigitos(int n)
+	 {
+	        int c=0,d;
+               while(n>0)
+			   {    d=n%10;
+	                n= n / 10;
+			
+			        c=d+c;
+               }
+     return (c);
+	 
+}
