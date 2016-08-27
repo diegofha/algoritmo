@@ -1,0 +1,46 @@
+// función  que  reciba  como  parámetros  dos  números  naturales,  y  retorne 
+//como  resultado  un  tercer  número
+//que  resulta  de  concatenar  (unir)  el  
+//parámetro con valor mayor al 
+//parámetro con el valor menor. 
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int concatenarUnir(int a,int b){
+	int num=10,c;
+	
+	if(a==b || b<a){
+		c=a;
+	}
+	else{
+		if(b>a){
+	      c=b;
+		  b=a;
+		  a=c;
+        }
+		
+	}
+		while (a>0){
+
+			a=a/10;
+			if(a>0){
+			num=num*10;
+			}
+		}
+	
+		b=(b*num)+c;
+		return (b);
+}
+
+void main(){
+	int num1,num2,r;
+	cout<<"ingrese ambos numeros :";
+	cin>>num1;
+	cout<<endl;
+	cin>>num2;
+	r=concatenarUnir(num1,num2);
+	cout<<"el numero concatenado es --->"<<r;
+	getch();
+}
