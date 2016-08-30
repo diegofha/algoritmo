@@ -1,0 +1,32 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+
+void main(){
+	int impar=1,primo=1,par=2,turno=1,n,may=0,c=1;
+		cout<<"ingrese el numero de la secuencia:";
+	    cin>>n;
+		do{
+		while(c<n){
+			
+			if(turno==1){
+				cout<<"yes"<<" ";
+			}
+			else{
+				if(turno==2){
+					cout<<"no"<<" ";
+				}
+				cout<<"jajaja"<<" ";
+			}
+			c++;
+			turno++;
+			if (turno==3){
+				turno=1;
+			}
+		}
+		}
+		while(turno<=3);
+		getch();
+}
