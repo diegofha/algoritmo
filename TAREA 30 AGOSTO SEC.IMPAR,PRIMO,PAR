@@ -1,0 +1,60 @@
+	#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+bool esprimo(int n){
+	int i;
+	bool k=true;
+	for(i=2;i<n;i++){
+		if(n%i==0){
+			k=false;
+		}
+	}
+	return (k);
+}
+
+
+void main(){
+	int impar=1,primo=1,par=2,turno=1,n,r,c=0;
+		cout<<"ingrese el numero de la secuencia:";
+	    cin>>n;
+		do{
+	
+		   
+			if(turno==1){
+				cout<<impar<<" ";
+				impar=impar+2;
+			}
+			else{
+				if(turno==2){
+					r=0;
+					do{
+					if(esprimo(primo)==true){
+						cout<<primo<<" ";
+						r=1;
+						primo++;
+					}else{
+						primo++;}
+				     	}while(r<1);
+					
+					}
+				
+		
+					else{
+						if(turno==3){
+							cout<<par<<" ";
+							par=par+2;
+						}
+					 }
+					}
+			
+			
+			c++;
+			turno=turno+1;
+			if(turno==4){
+				turno=1;}
+		
+		}while(c<n);
+		getch();
+}
