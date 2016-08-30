@@ -1,0 +1,76 @@
+//ELIMINAR LOS ELEMENTOS PRIMOS DE UN VECTOR
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+bool esprimo(int n){
+	int i;
+	bool k=true;
+	for(i=2;i<n;i++){
+		if(n%i==0){
+			k=false;
+		}
+	}
+	return(k);
+}
+
+
+int contadoreprimos(int v[],int n){
+	int i,cp;
+
+	for(i=0;i<n;i++){
+		if(esprimo(v[i])==true){
+			cp=cp+1;
+		}
+		return(cp);
+	}
+
+
+void eliminarprimos(int v[],int n,int vN[],int m){
+
+	int i,r=0,cp;
+	cp=contadoreprimos(v,n);
+	while(m<=cp){
+	     for(i=0;i<n;i++){
+
+	         if(esprimo(v[i])==false){
+			     vN[r]=v[i];
+
+		    }
+			 else{
+				  m=m+1;
+			  }
+		 
+	       }
+	}
+}
+
+
+
+
+void cargarvector(int v[],int n)
+	{int i,x;
+     for(i=0;i<n;i++){
+		 cout<<"ingrese elemento :";
+		 cin>>x;
+		 v[i]=x;
+		 }
+}
+
+void mostrarvector(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		//cout<<"\n";
+		cout<<v[i]<<" ";
+	}
+}
+
+void main(){
+	int n,v[100];
+	cout<<"ingrese tamaño del vector:";
+	cin>>n;
+	cargarvector(v,n);
+	mostrarvector(v,n);
+	getch();
+}
