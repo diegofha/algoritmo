@@ -1,0 +1,60 @@
+//ordenar secuencias de num primos ascendentemente
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+bool esprimo(int n){
+	int i;
+	bool k=true;
+	for(i=2;i<n;i++){
+		if(n%i==0){
+			k=false;
+		}
+	}
+	return(k);
+}
+
+ void ordenarvectorprimos(int v[],int n){
+	 int i,j,aux;
+	 for(j=i+1;j<n;j++){
+		 if(vec[i]>vec[j]){
+			 aux=vec[i];
+			 vec[i]=vec[j];
+	         vec[j]=aux;
+		 }
+	 }
+ }
+ 
+
+ 
+
+
+
+void cargarvector(int v[],int n)
+	{int i,x;
+     for(i=0;i<n;i++){
+		 cout<<"ingrese elemento :";
+		 cin>>x;
+		 v[i]=x;
+		 }
+}
+
+void mostrarvector(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		//cout<<"\n";
+		cout<<v[i]<<" ";
+	}
+}
+
+void main(){
+	int n,v[100];
+	cout<<"ingrese tamaño del vector:";
+	cin>>n;
+	//cargarvector(v,n);
+	cargarpatronprimo(v,n);
+	ordenarvectorprimos(vec[],n);
+	mostrarvector(v,n);
+	getch();
+}
