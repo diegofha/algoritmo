@@ -1,0 +1,81 @@
+#include <iostream>
+#include <conio.h>
+ 
+using namespace std;
+//void menudeopciones(){
+	//cout<<"MENU DE OPCIONES";
+	//cout<<"----------------";
+
+
+
+
+
+
+void cargar(int v[],int n){
+	int i,x;
+	for(i=0;i<n;i++){
+	cout<<"ingrese elemento ["<<i<<"] : ";
+	cin>>x;
+	v[i]=x;
+	}
+}
+
+
+void mostrar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<v[i]<<" ";
+	}
+}
+int suma(int v[],int n){
+	int i,s=0;
+	for(i=0;i<n;i++){
+		s=s+v[i];
+	}
+	return(s);
+}
+
+int mayorelemento(int v[],int n){
+	int i,may=0;
+	for(i=0;i<n;i++){
+		if(v[i]>may){
+			may=v[i];
+		}
+	}
+		return(may);
+}
+
+void uniondevectores(int v[],int n,int vb[],int nb,int c[],int &nc){
+	int i,k;
+	nc=n+nb;
+		
+	for(i=0;i<nc;i++){
+
+		c[k]=v[i];
+		c[k+1]=vb[i];
+		
+		k=k+2;
+	}
+}
+
+void main(){
+	int n,v[100],v2[100],nb,c[100],nc;
+	cout<<"ingrese tamaño del vector 1:";
+	cin>>n;
+	cout<<"ingrese el tamaño del segundo vector:";
+	cin>>nb;
+	
+	cargar(v,n);
+	
+	cargar(v2,nb);
+	cout<<"vector 1"<<endl;
+	mostrar(v,n);
+	cout<<"vector 2"<<endl;
+	mostrar(v2,nb);
+	uniondevectores(v,n,v2,nb,c,nc);
+	cout<<"vector resultante";
+	mostrar(c,nc);
+	//cout<<"la suma del vector :"<<suma(v,n)<<endl;
+	//cout<<"el mayor elemento del vector es :"<<mayorelemento(v,n);
+	getch();
+}
