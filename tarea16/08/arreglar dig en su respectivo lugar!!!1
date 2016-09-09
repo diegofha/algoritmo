@@ -1,0 +1,85 @@
+//INSERTAR UN DIGITO EN SU LUGAR CORRESPONDIENTE//arreglar!!!!
+
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+int contadordig(int n){
+	int c=0;
+	while(n>0){
+		c++;
+		n=n/10;
+	}
+	return(c);
+}
+
+void cargarnum(int n,int v[]){
+	int i;
+	i=contadordig(n);
+	while(n>0){
+		v[i]=n%10;
+		i--;
+		n=n/10;}
+}
+
+void mostrar(int v[],int n){
+	int i;
+	for(i=1;i<=n;i++){
+		cout<<v[i];
+	}
+}
+void recorrer(int n,int a,int aux,int v[]){
+	while(a<n){
+		
+		v[n+1]=v[n];
+		cout<<"dig es:"<<v[n+1];
+         if(n==a+1){
+			 v[n]=aux;
+			 cout<<endl<<v[n];
+		 }
+		n=n-1;
+		
+		
+		cout<<endl;
+	}
+		
+}
+
+
+void insertarnum(int n,int x){
+	int v[100],i,k,may=0,aux;
+	k=contadordig(n);
+	cout<<"el num de digitos es: "<<k;
+	cargarnum(n,v);
+	cout<<endl;
+	cout<<"los dig cargados son"<<endl;
+	mostrar(v,k);
+	for(i=1;i<=k;i++){
+		if (x<v[i] && x>v[i-1]){
+			cout<<endl;
+			cout<<x<<" es menor que ["<<v[i]<<"] y mayor que ["<<v[i-1]<<"] ";
+			aux=v[i];
+			v[i]=x;
+			cout<<"k="<<k;
+			cout<<endl<<"i="<<i;
+			cout<<endl<<"aux="<<aux;
+			recorrer(k,i,aux,v);
+		}
+
+	}
+	cout<<endl;
+	k++;
+	mostrar(v,k);
+	
+}
+void main(){
+
+	int n,x,v[100];
+	cout<<"ingrese un numero:"<<" ";
+	cin>>n;
+	cout<<"ingrese el numero que desea insertar:"<< " ";
+	cin>>x;
+	insertarnum(n,x);
+	
+	getch();
+}
