@@ -1,0 +1,111 @@
+#include<iostream>
+#include<conio.h>
+using namespace std;
+
+#define MAX 20
+struct tVector{
+	int sVec[MAX];
+};
+void cargar(tVector vec[], int n){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			cout << "Introducir elemento : ";
+			cin  >> vec[i].sVec[j];
+		}
+	}
+}
+
+void mostrar(tVector vec[], int n){
+	int i,j;
+	cout << "\nEl vector de vectores es --->>> :\n";
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			cout << vec[i].sVec[j] << "  ";
+		}
+		cout << " *   ";
+	}
+}
+
+void cargarDpTsTi(tVector vec[], int n){
+	int i,j,dp=1,ti=1,ts=1;	
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			if(i==j){
+				vec[i].sVec[j] = dp++;
+			}else{
+				if(i<j){
+					vec[i].sVec[j] = ts;
+					ts += 2;
+				}else{
+					vec[i].sVec[j] = ti;
+					ti += 2;					
+				}
+			}
+		}		
+	}
+}
+
+
+void ordenar(int vec[], int n){
+	int i,j,aux;
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			if(vec[i] > vec[j]){
+				aux    = vec[i];
+				vec[i] = vec[j];
+				vec[j] = aux;
+			}
+		}
+	}
+}
+
+void ordenarSubVectores(tVector vec[], int n){
+	int i;
+	for(i=0;i<n;i++){
+		ordenar(vec[i].sVec,n);
+	}
+
+}
+
+bool verifSiEsPrimo(int n){
+	bool k = true;
+	int i;
+	for(i=2;i<n;i++){
+		if(n % i == 0){
+			k = false;
+		}
+	}
+	return(k);
+}
+void ordenarPrimos(tVector vec[], int n){
+	int i,j,vecPrimos[50],k=0;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			if(verifSiEsPrimo(vec[i].sVec[j]) == true){
+				vecPrimos[k++] = vec[i].sVec[j];
+			}
+		}
+	}
+	ordenar(vecPrimos,k);
+	k = 0;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			if(verifSiEsPrimo(vec[i].sVec[j]) == true){
+				vec[i].sVec[j] = vecPrimos[k++];
+			}
+		}
+	}
+}
+void main(){
+	int numElem;
+	tVector vec[MAX];
+	cout << "Cuantos elementos para el vector ? :";
+	cin >> numElem;
+	cargar(vec,numElem);	
+	//cargarDpTsTi(vec,numElem);
+	mostrar(vec,numElem);
+	ordenarPrimos(vec,numElem);
+	mostrar(vec,numElem);
+	getch();
+}
