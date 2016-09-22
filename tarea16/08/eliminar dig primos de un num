@@ -1,0 +1,70 @@
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+
+using namespace std;
+bool esprimo(int n){
+	bool k=true;
+	int i;
+	for(i=2;i<n;i++){
+		if (n%i==0){
+			k=false;
+		}
+	}
+	return (k);
+}
+void mostrar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<v[i];
+	}
+}
+int contadordig(int n){
+	int c=0;
+	while(n>0){
+		c++;
+		n=n/10;
+	}
+	return(c);
+}
+void volcar(int v[],int n){
+	int i=0,k;
+	k=n;
+	for(i=0;i<n;i++){
+		v[i]=v[k];
+		k--;
+	}
+}
+int invertirnum(int n){
+	int m=0;
+	while(n>0){
+		m=m*10+(n%10);
+			n=n/10;
+	}
+	return(m);
+}
+
+void eliminar(int n){
+	int i,c,v[100],d,k=0;
+	c=contadordig(n);
+	d=invertirnum(n);
+	
+	for(i=0;i<contadordig(n);i++){
+		if(esprimo(d%10)==false){
+		v[k]=d%10;
+		k++;
+		}
+		d=d/10;
+	}
+	mostrar(v,k);
+}
+
+
+int main(){
+	int n;
+	cout<<"ingrese el numero:";
+	cin>>n;
+	eliminar(n);
+	getch();
+  
+}
