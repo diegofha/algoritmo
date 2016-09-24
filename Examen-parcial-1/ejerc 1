@@ -1,0 +1,109 @@
+//Realizar una funcion que reciba un numero natural como parametro y retorne el mismo ordenado de la sigte forma:
+//num: 26415 ------->14652
+//num:  3961-------->1693
+//num:  724285------>247852
+//RESTRICCION UNA FUNCION QUE TENGA COMO PARAMETRO EL NUMERO Y LO ORDENE ASCENDENTEMENTE EN LOS EXTREMOS
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+void mostrar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		
+		cout<<v[i];
+	}
+	cout<<endl;
+}
+int invertir(int n){
+	int m;
+		while(n>0){
+			m=m*10+n%10;
+			n=n/10;
+		}
+		return(m);
+}
+int contardig(int n){
+	int c;
+	while(n>0){
+		n=n/10;
+		c++;
+	}
+	return(c);
+}
+
+void cargardig(int v[],int c,int n){
+int i,num;
+num=invertir(n);
+for (i=0;i<c;i++){
+	v[i]=num%10;
+	num=num/10;
+    }
+
+}
+void ordenburbuja(int v[],int n){
+int i=0,j,aux;
+for(i=0;i<n;i++){
+	 for(j=i+1;j<n;j++){
+		 if(v[i]>v[j]){
+			 aux=v[i];
+			 v[i]=v[j];
+	         v[j]=aux;
+		 }
+	 }
+ }
+}
+
+    
+
+	
+
+
+void ordenar(int n){
+	int v[100],i,b=0,c,j=0,jf,vec[100];
+	c=contardig(n);
+	jf=c-1;
+	cout<<"ahora cargara los digitos en un vector:"<<endl;
+	cargardig(v,c,n);
+	cout<<"digitos del numero cargado en vector:"<<endl;
+	mostrar(v,c);
+	ordenburbuja(v,c);
+	cout<<"digitos del numero ordenado enforma ascendente:"<<endl;
+	mostrar(v,c);
+	cout<<endl;
+	cout<<"contador:";
+	cout<<c<<endl;
+	for(i=0;i<c;i++){
+		
+		if(b==0){
+			vec[j]=v[i];
+			
+			j++;
+			b=1;
+		
+		}else{
+			vec[jf]=v[i];
+			
+		    jf--;
+			b=0;}
+	}
+	cout<<"digitos ordenado en los extremos"<<endl;
+	mostrar(vec,c);
+}
+
+	
+    
+void main(){
+	int n;
+	cout<<"ingrese numero: ";
+	cin>>n;
+	ordenar(n);
+	getch();
+}
+
+
+
+
+
+	
