@@ -1,0 +1,46 @@
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+using namespace std;
+
+int cantidcarct(char c[]){
+	int i=0;
+	while (c[i]!='\0'){
+		i++;
+	}
+		return(i);
+}
+
+
+void invertircad(char cad[]){
+	int i,n,c;
+	char aux;
+	n=strlen(cad);
+	c=n;
+	cout<<c;
+	cout<<"el ult ccaractr es :";
+	cout<<cad[n-1]<<endl;
+	i=0;	
+	while(i<n/2){
+			aux=cad[i];
+			cad[i]=cad[c-1];
+			cad[c-1]=aux;
+		c--;
+	i++;	
+	}
+	}
+
+
+
+
+void main(){
+	char c[100];
+	
+	cout<<"agregue un enunciado:"<<endl;
+	gets(c);
+	cout<<endl;
+	invertircad(c);
+	cout<<c<<endl;
+	cout<<"la cantd de caracteres es: "<<cantidcarct(c);
+	getch();
+}
