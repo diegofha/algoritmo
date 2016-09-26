@@ -1,0 +1,48 @@
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+using namespace std;
+void unir(char c[],char c2[]){
+
+	int a,i,k=0,n,m;
+	char aux[100];
+	n=strlen(c);
+	m=strlen(c2);
+	a=0;
+	if (n<m){
+		for(i=1;i<=m;i++){
+		
+		if(c[n+a]=='\0'){
+			c[n+a]=c2[k];
+		    c[n+i]='\0';
+			k++;
+			a++;
+		 }
+		}
+		cout<<c;
+
+	}else{
+    for(i=1;i<=n;i++){
+		
+		if(c2[m+a]=='\0'){
+			c2[m+a]=c[k];
+		    c2[m+i]='\0';
+			k++;
+			a++;
+		}
+	 }
+	cout<<c2;
+	}
+}
+
+
+
+void main(){
+	char c[100],c2[100];
+	cout<<"agregue un enunciados:"<<endl;
+	gets(c);
+	gets(c2);
+    cout<<endl;
+	unir(c,c2);
+	getch();
+}
