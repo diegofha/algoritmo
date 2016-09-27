@@ -1,0 +1,51 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+#define FIL 20
+#define COL 20
+void cargar(int mat [FIL][COL],int n,int m){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<"introducir dato mat["<<i<<"]["<<j<<"]:";
+			cin>>mat[i][j];
+		}
+	}
+}
+void mostrar(int mat[FIL][COL],int n,int m){
+int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<mat[i][j]<<" ";
+          }
+		cout<<endl;
+	}
+}
+void elementomayor(int mat[FIL][COL],int n,int m){
+	int may=0,i,j;
+     for(i=0;i<n;i++){
+		 for(j=0;j<m;j++){
+			 if(mat[i][j]>may){
+				 may=mat[i][j];
+			 }
+		 }
+	 }
+	 cout<<endl;
+	 cout<<"el elemento mayor es: ";
+	 cout<<may;
+}
+
+
+
+void main(){
+	int nrofil,nrocol,matriz[FIL][COL];
+	cout<<"numero de filas?: ";
+	cin>>nrofil;
+	cout<<"numero de columnas? :";
+	cin>>nrocol;
+	cargar(matriz,nrofil,nrocol);
+	mostrar(matriz,nrofil,nrocol);
+	elementomayor(matriz,nrofil,nrocol);
+	getch();
+}
