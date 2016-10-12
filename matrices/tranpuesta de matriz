@@ -1,0 +1,57 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+void cargar(int mat[100][100],int n,int m){
+	int i,j,x;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<"elemento["<<i<<"]["<<j<<"]:";
+			cin>>x;
+			mat[i][j]=x;
+		}
+	}
+}
+void mostrar(int mat[100][100],int n,int m){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<mat[i][j]<<" ";
+		}
+		cout<<endl;
+		
+	}
+}
+
+void transponer(int mat[100][100],int n,int m){
+	int i,j,aux;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(i<=j){
+			aux=mat[i][j];
+			mat[i][j]=mat[j][i];
+			mat[j][i]=aux;
+
+			}
+		}
+	}
+}
+
+
+
+void main(){
+	int n,m,mat[100][100];
+	cout<<"numero de filas:";
+	cin>>n;
+	cout<<"numero de columna:";
+	cin>>m;
+	cargar(mat,n,m);
+	mostrar(mat,n,m);
+	cout<<endl;
+
+	cout<<endl;
+	transponer(mat,n,m);
+	mostrar(mat,n,m);
+	getch();
+}
