@@ -1,0 +1,123 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+#define FIL 20
+#define COL 20
+void cargar(int mat [FIL][COL],int n,int m){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<"introducir dato mat["<<i<<"]["<<j<<"]:";
+			cin>>mat[i][j];
+		}
+	}
+}
+void mostrar(int mat[FIL][COL],int n,int m){
+int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<mat[i][j]<<" ";
+          }
+		cout<<endl;
+	}
+}
+
+
+bool esprimo(int n){
+	int i;
+	for(i=2;i<n;i++){
+     if(n%i==2){
+		 return false;
+	 }
+	}
+	return true;
+}
+
+void mostrarv(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<v[i];
+	}
+}
+void concatenarnum(int n,int m,int l,int v[]){
+	int i;
+	for(i=0;i<3;i++){
+    if(i==0){
+		v[i]=n;
+	}
+	if(i==1){
+	 v[i]=m;
+	}
+	if(i==2){
+	v[i]=l;
+   }
+
+}
+}
+
+void cargarv(int mat[FIL][COL],int n,int m){
+	int i,j,k=0;
+	int vd[100],vs[100],vi[100];
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(i==j){
+				vd[k]=mat[i][j];
+				k++;
+			}else{
+				if(j>i){
+					vs[h]=mat[i][j];
+					h++;
+				}else{
+					vi[l]=mat[i][j];
+					l++;
+				}
+			}
+		}
+	}
+}
+
+
+void sumar(int mat[FIL][COL],int n,int m){
+	int i,j,x=0,y=0,z=0,k=3;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(i==j){
+				x=x+mat[i][j];
+			}else{
+			    if(j>i){
+					y=y+mat[i][j];
+				}else{
+					z=z+mat[i][j];
+				}
+			}
+			}
+		}
+	cout<<x;
+	cout<<endl;
+	cout<<y;
+	cout<<endl;
+	cout<<z;
+	cout<<endl;
+	int v[100];
+	concatenarnum(x,y,z,v);
+	cout<<"la suma ees: ";
+	mostrarv(v,k);
+}
+
+
+
+void main(){
+	int n,m,matriz[FIL][COL];
+	cout<<"numero de filas?: ";
+	cin>>n;
+	cout<<"numero de columnas? :";
+	cin>>m;
+	cargar(matriz,n,m);
+	mostrar(matriz,n,m);
+	sumar(matriz,n,m);
+	
+	cout<<endl;
+	
+getch();
+}
