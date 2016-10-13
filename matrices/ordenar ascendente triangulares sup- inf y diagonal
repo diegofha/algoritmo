@@ -1,0 +1,119 @@
+#include <iostream>
+#include <conio.h>
+#include <string>
+using namespace std;
+void cargar(int mat[100][100],int n,int m){
+	int i,j,x;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<"ingrese elemento["<<i<<"]["<<j<<"]:";
+			cin>>x;
+			mat[i][j]=x;
+		}
+	}
+}
+
+
+
+void mostrar(int mat[100][100],int n,int m){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<mat[i][j];
+			cout<<" ";
+		}cout<<endl;
+	}
+}
+
+bool esprimo(int n)
+{int i;
+for(i=2;i<n;i++){
+	if(n%i==0){
+		return false;
+	}
+}return true;
+}
+
+int cantprimo(int mat[100][100],int n,int m){
+	int i,j,c=0;
+
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(esprimo(mat[i][j])==true){
+				c++;
+			}
+		}
+	}return(c);
+}
+void orden (int v[],int n){
+	int i,j,aux;
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			if(v[i]>v[j]){
+				aux=v[i];
+				v[i]=v[j];
+				v[j]=aux;
+			}
+		}
+	}
+}
+
+
+
+
+	void cargarvec(int mat[100][100],int n,int m){
+	int v[100],i,j,vb[100],vc[100],a,b,c;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(j==i){
+				v[a]=mat[i][j];
+				a++;
+			}else{
+				if(j>i){
+					vb[b]=mat[i][j];
+				   b++;
+				}else{
+					vc[c]=mat[i][j];
+					c++;
+				}
+
+			}
+		}
+	}
+	orden (v,a);
+	orden (vb,b);
+	orden (vc,c);
+	int k=0,l=0,p=0;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(i==j){
+				mat[i][j]=v[k++];
+			}else{
+				if(j>i){
+					mat[i][j]=vb[l++];
+				}else{
+					mat[i][j]=vc[p++];
+				}
+			}
+		}
+	}
+	 cout<<"matriz ordenada"<<endl;
+	mostrar(mat,n,m);
+
+
+}
+
+
+void main(){
+	int n,mat[100][100],m,r;
+	cout<<"filas:";
+	cin>>n;
+	cout<<"columnas:";
+	cin>>m;
+	 cargar(mat,n,m);
+	 mostrar(mat,n,m);
+	 cargarvec(mat,n,m);
+	 
+	 getch();
+}
+		
