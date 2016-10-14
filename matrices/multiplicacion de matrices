@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+int main()
+
+{int m,n,f,c,i,j,k;
+
+int A[100][100],B[100][100],C[100][100];
+
+
+cout<<"\nINGRESE LA FILA Y COLUMNA DE LA PRIMERA MATRIZ\n"<<endl;
+
+cin>>m;
+cin>>n;
+cout<<"\nINGRESE LA FILA Y COLUMNA DE LA SEGUNDA MATRIZ\n";
+cin>>f;
+cin>>c;
+cout<<endl;
+if (n==f){
+cout<<"\n---------------------------------------------------\n";
+cout<<"INGRESE EL VALOR DE LA PRIMERA MATRIZ\n\n"<<endl;
+
+//INGRESE LAS MATRICES
+
+for (i=1;i<=m;i++){
+
+ for (j=1;j<=n;j++)
+
+{cout<<"["<<i<<"]["<<j<<"]:";
+   cin>>A[i][j];
+
+ }
+}
+
+cout<<"\n---------------------------------------------------\n";
+
+cout<<"\nINGRESE EL VALOR DE LA SEGUNDA MATRIZ\n\n";
+
+  for (i=1;i<=f;i++){
+
+   for (j=1;j<=c;j++)
+
+    { cout<<"["<<i<<"]["<<j<<"]:";
+   cin>>B[i][j];
+
+    }
+  }
+
+//OPERACION DE MULTIPLICACION
+
+ for (i=1;i<=m;i++)
+
+    {for (j=1;j<=c;j++)
+
+       { C[i][j]=0;
+
+         for (k=1;k<=n;k++)
+
+          {C[i][j]=C[i][j]+A[i][k]*B[k][j];
+
+          }
+
+       }
+
+    }
+
+cout<<"\n---------------------------------------------------\n";
+
+ cout<<"\nLA MULTIPLICACION DE LAS MATRICES ES:\n\n";
+
+//IMPRESION
+
+  for (i=1;i<=m;i++){
+
+   for (j=1;j<=c;j++)
+
+    { cout<<C[i][j]<<" ";
+      
+
+    }cout<<endl;
+  }
+
+}
+
+else
+
+{cout<<"\n_________________________________________\n";
+
+cout<<"Estas matrices no se pueden multiplicar \n";
+
+cout<<"debido a que el numero de columnas de la\n";
+
+cout<<"matriz A es diferente al numero de filas\n";
+
+cout<<"de la matriz B, !Vuelva a intentarlo!   \n";
+
+}
+
+getch();
+
+}
