@@ -1,0 +1,63 @@
+#include<iostream>
+#include <conio.h>
+#include <string.h>
+using namespace std;
+
+struct vector{
+	char c[100];
+};
+void cargar(vector v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+     cout<<"ingrese cad : ";
+	 gets(v[i].c);
+   }
+}
+void mostrar(vector v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		
+		cout<<v[i].c<<"  ";
+    }
+}
+void funcionalmacenar(vector v[],int n,vector vb[]){
+	int i,j=0,o=0,k=0;
+	char cad[100];
+	
+	for(i=0;i<n,i++){
+		cad[j]=0;
+		l=0;
+		while(v[i].c!=' '){
+	     cad[j++]=v[i].c[l++];
+		}
+		cad[j]='\0';
+		vb[k]=cad;
+		k++;
+	}
+}
+struct matriz{
+	vector v[100];
+};
+
+void funcion(int mat[100][100],vector v[],int n,){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			for(k=0;k<n;k++){
+				for(cont=0;cont<n;cont++){
+					cout<<mat[i][j].vb[k].cad<<" ";
+				}cout<<"   ";
+			}cout<<endl;
+		}
+	}
+}
+void main(){
+	int n;
+	matriz A[100][100];
+	cout<<"ingrese orden :";
+	cin>>n;
+	cout<<"se cargaraa la matriz: "<<endl;
+	cargar(A,n);
+	mostrar(A,n);
+	getch();
+}
