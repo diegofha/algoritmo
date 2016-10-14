@@ -1,0 +1,83 @@
+#include<iostream>
+#include <conio.h>
+using namespace std;
+int main()
+
+{
+
+int i,j,k,l,m,n ;
+
+int  a[100][100];
+
+int det;
+
+cout<<"\t\tIntroducir el ORDEN DE LA MATRIZ : N = ";
+cin>>n;
+
+cout<<"\n";
+
+m=n-1;
+
+/* Vamos a introducir la matriz por teclado*/
+
+ 
+
+cout<<"\t\tIntroducir los elementos por FILAS \n";
+
+cout<<"\t\t---------------------------------- \n";
+
+for(i=1;i<=n;i++)
+
+{ for(j=1;j<=n;j++)
+
+{ cout<<"["<<i<<"]["<<j<<"]:";
+cin>>a[i][j]; } }
+
+ 
+
+/* SI QUEREMOS LEER LOS ELEMENTOS DE LA MATRIZ LISTADOS */
+
+for(i=1;i<=n;i++){
+
+{ for(j=1;j<=n;j++)
+
+cout<<a[i][j]<<" "; 
+}cout<<endl;
+}
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+/*****Calculo del DETERMINANTE*****/
+
+det=a[1][1];
+
+for(k=1;k<=m;k++)
+
+{ l=k+1;
+
+for(i=l;i<=n;i++)
+
+{ for(j=l;j<=n;j++)
+
+a[i][j] = ( a[k][k]*a[i][j]-a[k][j]*a[i][k] )/a[k][k]; }
+
+det=det*a[k+1][k+1];
+
+}
+
+cout<<"\n\n";
+
+cout<<det;
+
+cout<<"\t\t\t-------------------------\n";
+
+getch();
+
+}
