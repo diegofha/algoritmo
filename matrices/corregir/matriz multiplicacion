@@ -1,0 +1,114 @@
+#include <iostream>
+#include <conio.h>
+#include <string>
+using namespace std;
+void cargar(int mat[100][100],int n,int m){
+	int i,j,x;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<"ingrese elemento["<<i<<"]["<<j<<"]:";
+			cin>>x;
+			mat[i][j]=x;
+		}
+	}
+}
+
+
+
+void mostrar(int mat[100][100],int n,int m){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<mat[i][j];
+			cout<<" ";
+		}cout<<endl;
+	}
+}
+
+
+
+void orden (int v[],int n){
+	int i,j,aux;
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			if(v[i]>v[j]){
+				aux=v[i];
+				v[i]=v[j];
+				v[j]=aux;
+			}
+		}
+	}
+}
+void transponer(int mat[100][100],int n,int m){
+	int i,j,aux;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(j>=i){
+		aux=mat[i][j];
+		mat[i][j]=mat[j][i];
+		mat[j][i]=aux;
+		 }
+		}
+	}
+}
+void matvect(int mat[100][100],int v[100],int n,int m){
+	int i,j,a=0;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			v[a]=mat[i][j];
+			a++;
+		}i=m;
+	}
+}
+
+
+int acumulador(int mat[100][100],int matb[100][100],int n,int m,int i,int j){
+	int s=0,k=0,x=100,y=100,a,b;
+	
+	for(a=i;i<x;a++){
+	
+		for(b=j;j<y;b++){
+			s=s+(mat[a][b]*matb[a][b]);
+		}i=100;j=100;
+	}
+	return(s);
+	
+}
+
+
+void multip(int mat[100][100],int matb[100][100],int n,int m){
+	int i,j,matc[100][100];
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			matc[i][j]=acumulador(mat,matb,n,m,i,j);
+			
+		}
+	}
+	cout<<"matriz multiplicada:"<<endl;
+	mostrar(matc,n,m);
+}
+
+
+
+
+
+void main(){
+	int n,mat[100][100],m,matb[100][100];
+	cout<<"filas:";
+	cin>>n;
+	cout<<"columnas:";
+	cin>>m;
+	cout<<"matriz a:"<<endl;
+	 cargar(mat,n,m);
+	 cout<<endl<<"matriz b"<<endl;
+	 cargar(matb,n,m);
+	  mostrar(mat,n,m);
+	  cout<<endl;
+	  cout<<"matriz b"<<endl;
+	  mostrar(matb,n,m);
+	  cout<<endl;
+	  cout<<"multiplicando:"<<endl;
+	  multip(mat,matb,n,m);
+	 getch();
+}
+		
