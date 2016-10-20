@@ -1,0 +1,144 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+struct vector{
+	int a;
+	int b;
+};
+void eliminar(vector v[],int &n){
+	int i,j;
+	for(i=0;i<n;i++){
+		if(v[i].a==0){
+			for(j=i;j<n-1;j++){
+				v[j].a=v[j+1].a;
+				v[j].b=v[j+1].b;
+			}
+			i--;
+			n--;
+		}
+	}
+}
+void ordenburbuja(vector v[],int n){
+	int i,j,x;
+	for(i=0;i<n;i++){
+		for(j=i;j<n-1;j++){
+			if(v[j].b<v[j+1].b){
+				x=v[j].b;
+				v[j].b=v[j+1].b;
+				v[j+1].b=x;
+				x=v[j].a;
+				v[j].a=v[j+1].a;
+				v[j+1].a=x;
+			}
+		}
+	}
+}
+
+void cargar(vector v[],int &n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<"ingrese numero:";
+		cin>>v[i].a;
+		cout<<"ingrese exponente de la variable:";
+		cin>>v[i].b;
+	}
+	eliminar(v,n);
+	ordenburbuja(v,n);
+}
+bool exponentebuscador(vector v[],int n,int x){
+	int i;
+	for(i=0;i<n;i++){
+		if(x==v[i].b){
+			return true;
+			i=n;
+		}
+	}
+	return false;
+}
+int posicionar(vector v[],int n,int x){
+	int i,y;
+	for(i=0;i<n;i++){
+		if(x==v[i].b){
+			y=i;
+			i=n;
+		}
+	}
+	return(y);
+}
+void suma(vector v[],int n,vector c[],int &nc){
+	int i,k;
+	for(i=0;i<n;i++){
+		if(exponentebuscador(c,nc,v[i].b)==true){
+			k= posicionar(c,nc,v[i].b);
+			c[k].a=c[k].a+v[i].a;
+		}else{
+			c[nc].a=v[i].a;
+			c[nc].b=v[i].b;
+			nc++;
+		}
+	}
+}
+void sumadeterminos(vector v[],int n,vector c[],int nc,vector d[],int &nd){
+	
+	nd=0;
+	suma(v,n,d,nd);
+	suma(c,nc,d,nd);
+	eliminar(d,nd);
+	ordenburbuja(d,nd);
+}
+void mostrar(vector v[],int n){
+	int i,j;
+	if(n>0){
+		if(v[0].b==1){
+			cout<<" "<<v[0].b<<"x";
+		}else{
+			if(v[0].b==0){
+				cout<<" "<<v[0].a;
+			}else{
+				cout<<" "<<v[0].a<<"x^"<<v[0].b;
+			}
+		}
+	}
+	for(i=1;i<n;i++){
+		if(v[i].a>0){
+			if(v[i].b==1){
+				cout<<" +"<<v[i].a<<"x";
+			}else{
+				if(v[i].b==0){
+					cout<<" +"<<v[i].a;
+				}else{
+					cout<<" +"<<v[i].a<<"x^"<<v[i].b;
+				}
+			}
+		}else{
+			if(v[i].b==1){
+				cout<<" "<<v[i].a<<"x";
+			}else{
+				if(v[i].b==0){
+					cout<<" "<<v[i].a;
+				}else{
+					cout<<" "<<v[i].a<<"x^"<<v[i].b;
+				}
+			}
+		}
+	}
+}
+void main(){
+	vector v[30],b[30],c[30];
+	int n,nb,nc;
+	cout<<"ingresar cantidad de terminos del primer polinomio:";
+	cin>>n;
+	cargar(v,n);
+	cout<<"ingresar cantidad de terminos del segundo:";
+	cin>>nb;
+	cargar(b,nb);
+	cout<<endl<<"polinomio 1 es:"<<endl;
+    mostrar(v,n);
+	cout<<endl<<"polinomio 2 es:"<<endl;
+	mostrar(b,nb);
+	cout<<endl<<"la suma de polinomios es:"<<endl;
+	sumadeterminos(v,n,b,nb,c,nc);
+	mostrar(c,nc);
+	getch();
+}
+
