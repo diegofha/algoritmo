@@ -1,0 +1,71 @@
+#include<iostream>
+#include <conio.h>
+#include <string.h>
+#define fil 30
+#define col 30
+using namespace std;
+
+char pantalla[fil][col];
+void limpiarpantalla(){
+	int i,j;
+	for(i=0;i<fil;i++){
+		for(j=0;j<col;j++){
+			pantalla[i][j]=' ';
+		}
+	}
+}
+void mostrarpantalla(){
+	int i,j;
+	for(i=0;i<fil;i++){
+		for(j=0;j<col;j++){
+			cout<<pantalla[i][j];
+		}
+		cout<<endl;
+	}
+}
+void dibujarlineahorizontal(int x1,int y1,int x2,int y2){
+	int i;
+	for(i=y1;i<y2;i++){
+		pantalla[x1][i]=196;
+	}
+}
+void dibujarlineavertical(int x1,int y1,int x2,int y2){
+	int i;
+	for(i=x1;i<x2;i++){
+		pantalla[i][y1] =179;
+	}
+}
+void esquinas(int x1,int y1,int x2,int y2){
+	pantalla[x1][y1]=218;
+	pantalla[x1][y2]=191;
+	pantalla[x2][y1]=192;
+	pantalla[x2][y2]=217;
+}
+void dibujarsombra(int x1,int y1,int x2,int y2){
+	int i;
+	for(i=y1;i<=y2;i++){
+		pantalla[x1-1][i]=177;
+	}
+	for(i=x1-1;i<x2;i++){
+		pantalla[i][y2+1]=177;
+	}
+}
+void dibujarcaja(int x1,int y1,int x2,int y2){
+	 dibujarlineahorizontal(x1,y1,x1,y2);
+	 dibujarlineahorizontal(x2,y1,x2,y2);
+	 dibujarlineavertical(x1,y1,x2,y1);
+	 dibujarlineavertical(x1,y2,x2,y2);
+	  esquinas(x1,y1,x2,y2);
+}
+void dibujarcaja3d(int x1,int y1,int x2,int y2){
+	dibujarcaja(x1,y1,x2,y2);
+	dibujarsombra(x1,y1,x2,y2);
+}
+void main(){
+	limpiarpantalla();
+	dibujarcaja3d(7,5,20,25);
+	mostrarpantalla();
+	getch();
+}
+
+
