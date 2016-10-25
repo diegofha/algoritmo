@@ -1,0 +1,52 @@
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+using  namespace std;
+struct regamigos{
+char nombres[30];
+int edad;
+char sexo;
+char estado;
+};
+void adicionaramigo(){
+	FILE *ptr;
+	regamigos registro;
+	 do{
+	cout<<"nombres:";
+	gets(registro.nombres);
+	}while(strlen(registro.nombres)==0);
+	do{
+	cout<<"edad:";
+	cin>>registro.edad;
+	if(registro.edad<1||registro.edad>100){
+	cout<<"\n error !!!,la edad es demasiada alta a 100 o baja a 1:\n";
+	 }
+	}while(registro.edad<1 || registro.edad>100);
+	do{
+	cout<<"sexo m/f:";
+	cin>>registro.sexo;
+	if(registro.sexo!='m'&& registro.sexo!='f'){
+	cout<<"\n error!!!,solo debe introducir 'm' si es masculino  o 'f' si es femenino\n";
+	}
+	}while(registro.sexo!='m'&& registro.sexo!='f');
+	
+}
+void mostraramigo(){
+	FILE *ptr;
+	regamigos registro;
+	ptr=fopen("amigos.dat","rb");//abre archivo en modo lectura
+	if(ptr!=NULL){
+		fread(&registro,sizeof(registro),1,ptr);//lee registro desde archivo binario
+		while(feof(ptr)==false){
+			cout<<"\n"<<registro.nombres<<"   "<<registro.edad<<"    "<<registro.sexo;
+			fread(&registro(registro),1,ptr);
+
+void main(){
+	
+	
+    adicionaramigo();
+	
+	ptr=fopen("amigos.dat","ab");//abre archivo en modo escritura para adicionar
+	fclose(ptr);
+	getch();
+}
