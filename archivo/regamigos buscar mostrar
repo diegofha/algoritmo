@@ -1,0 +1,153 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+
+struct regAmigo{
+	char nombre[30];
+	int  edad;
+	char sexo; // F de femenio o M de masculino
+	char estado; // A de activo o E de eliminado
+};
+
+
+void proedad(){
+	int pf=0,cf=0,cm=0,am=0;
+	FILE *ptr;
+	regAmigo reg;
+	ptr=fopen("amigos.dat","rb");
+	if(ptr!=NULL){
+		fread(&reg,sizeof(reg),1,ptr);
+		while(feof(ptr)==false){//mienstras no llegue al final
+			if(reg.estado=='A'){
+				if(reg.sexo=='F'){
+					pf=pf+reg.edad;
+					cf++;
+				}else{
+					am=am+reg.edad;
+					cm++;
+				}
+			}
+			fread(&reg,sizeof(reg),1,ptr);
+		}
+		fclose(ptr);//cerrar el archivo
+		if(pf>0){
+		cout<<endl<<"promedio de edad femenino es:"<<pf/cf;
+		}if(cm>0){
+		cout<<"promedio de edad masculino:"<<am/cm;
+		}
+		if(pf+cm>0){
+			cout<<"promedio general es:"<<(pf+cm)/(cf+cm);
+		}
+	}
+}
+
+
+void adicionarAmigo(){
+	FILE *ptr;
+	regAmigo reg;
+	cout << "Introducir nombre completo : ";
+	do{
+		gets(reg.nombre);
+	}while(strlen(reg.nombre) == 0);
+	do{
+		cout << "Edad ? : ";
+		cin  >> reg.edad;
+		if(reg.edad < 1 || reg.edad > 120){
+			cout <<"\nError...!!!\nDebe introducir un valor entre 1 y 120\n\n";
+		}
+	}while(reg.edad < 1 || reg.edad > 120);
+	do{
+		cout << "Sexo <F/M> ? : ";
+		cin  >> reg.sexo;
+		if(reg.sexo != 'F' && reg.sexo != 'M'){
+			cout <<"\nError...!!!\nDebe introducir una F de femenino o M de masculino\n\n";
+		}
+	}while(reg.sexo != 'F' && reg.sexo != 'M');
+	reg.estado = 'A';//activar el registro
+	
+	ptr = fopen("amigos.dat","ab");  // abre archivo en modo escritura para adicionar
+	fwrite(&reg,sizeof(reg),1,ptr);  //escribe el registro en el archivo binario
+	fclose(ptr);	
+}
+
+
+void mostrarAmigos(){
+	int c;
+	FILE *ptr;
+	regAmigo reg;	
+	ptr = fopen("amigos.dat","rb");  // abre archivo en modo lectura
+	if(ptr != NULL ){
+		cout<<"\n\n------------------------------------------------";
+		cout<<"\n                      LISTADO DE AMIGOS           ";
+		cout<<"\n--------------------------------------------------";
+		cout<<"\n NRO reg:     nombre                  edad     sexo";
+		cout<<"\n---------------------------------------------------";
+		fread(&reg,sizeof(reg),1,ptr);  //lee registro desde archivo binario
+		while(feof(ptr) == false){
+			cout <<"\n"<<c<<" "<<reg.nombre<<"   "<<reg.edad<<"   "<<reg.sexo;
+			fread(&reg,sizeof(reg),1,ptr);  //lee registro desde archivo binario
+		}
+		cout<<"\n---------------------------------------------------";
+		fclose(ptr);	
+	}else{
+		cout << "\nArchivo no existe...!!!\n";
+	}	
+}
+void buscarregistro(int nroreg){
+	FILE *ptr;
+	regAmigo reg;
+	ptr=fopen("amigos.dat","rb");//abre archivo en mod lect
+	if(ptr!=NULL){
+		fseek(ptr,(nroreg-1)*sizeof(reg),SEEK_SET);//mueve el puntero al registro que se busca
+		fread(&reg,sizeof(reg),1,ptr);//lee el registro desde archivo binario
+		if(feof(ptr)==false){
+			if(reg.estado=='A'){//SOLO TOMA EN CUENTA LO Q ESTAN NO ELIMINADOS
+				cout<<"\n-----------------------------------------------------";
+				cout<<"\nEL REGISTRO BUSCADO ES---->:";
+				cout<<"\n"<<"\t\t"<<reg.nombre<<"\t\t"<<reg.edad
+
+
+void menu(){
+	int op;
+	do{
+	cout<<"-----MENU------\n";
+	cout<<"1.-adicionar"<<endl;
+	cout<<"2.-mostrar amigos"<<endl;
+	cout<<"3.-promedio de edad"<<endl;
+	cout<<"4.-buscar directamente por nro de registro";
+	cout<<"0.-salir"<<endl;
+	cout<<"elija una opcion:";
+	cin>>op;
+    switch(op){
+	case 1:
+		adicionarAmigo;
+		break;
+	case 2:
+		mostrarAmigos;
+		break;
+	case 3:
+		proedad;
+		break;
+
+	case 4:
+		cout<<"\nintroducir el nro de registro a buscar";
+		cin>>nroreg;
+		buscarregistro(nroreg);
+		break;
+
+	case 0:
+		cout<<"saliendo.....";
+	default:cout<<"error";
+		break;
+	}
+	}while(op!=0);
+		
+}
+
+void main(){
+	//adicionarAmigo();
+	mostrarAmigos();
+	getch();
+}
