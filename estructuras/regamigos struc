@@ -1,0 +1,63 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+
+struct regAmigo{
+	char nombre[30];
+	int  edad;
+	char sexo; // F de femenio o M de masculino
+	char estado; // A de activo o E de eliminado
+};
+
+void adicionarAmigo(){
+	FILE *ptr;
+	regAmigo reg;
+	cout << "Introducir nombre completo : ";
+	do{
+		gets(reg.nombre);
+	}while(strlen(reg.nombre) == 0);
+	do{
+		cout << "Edad ? : ";
+		cin  >> reg.edad;
+		if(reg.edad < 1 || reg.edad > 120){
+			cout <<"\nError...!!!\nDebe introducir un valor entre 1 y 120\n\n";
+		}
+	}while(reg.edad < 1 || reg.edad > 120);
+	do{
+		cout << "Sexo <F/M> ? : ";
+		cin  >> reg.sexo;
+		if(reg.sexo != 'F' && reg.sexo != 'M'){
+			cout <<"\nError...!!!\nDebe introducir una F de femenino o M de masculino\n\n";
+		}
+	}while(reg.sexo != 'F' && reg.sexo != 'M');
+	reg.estado = 'A';//activar el registro
+	
+	ptr = fopen("amigos.dat","ab");  // abre archivo en modo escritura para adicionar
+	fwrite(&reg,sizeof(reg),1,ptr);  //escribe el registro en el archivo binario
+	fclose(ptr);	
+}
+
+void mostrarAmigos(){
+	FILE *ptr;
+	regAmigo reg;	
+	ptr = fopen("amigos.dat","rb");  // abre archivo en modo lectura
+	if(ptr != NULL ){
+		fread(&reg,sizeof(reg),1,ptr);  //lee registro desde archivo binario
+		while(feof(ptr) == false){
+			cout <<"\n"<<reg.nombre<<"   "<<reg.edad<<"   "<<reg.sexo;
+			fread(&reg,sizeof(reg),1,ptr);  //lee registro desde archivo binario
+		}
+		fclose(ptr);	
+	}else{
+		cout << "\nArchivo no existe...!!!\n";
+	}	
+}
+
+
+void main(){
+	//adicionarAmigo();
+	mostrarAmigos();
+	getch();
+}
