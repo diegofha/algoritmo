@@ -1,0 +1,68 @@
+#include<iostream>
+#include<conio.h>
+#include<stdio.h>
+#include<string.h>
+using namespace std;
+
+struct producto{
+	int IdProd;
+	char nombre[30];
+	int stock;
+	float precio;
+	char estado;
+};
+struct cliente{
+	int IdClient;
+	char nombre[30];
+	char NIT[15];
+	char email[80];
+	char telefono[15];
+	char estado;
+};
+struct vendedor{
+	int IdVend;
+	char nombre[30];
+	char email[80];
+	char telefono[15];
+	char estado;
+};
+struct venta{
+	int IdVenta;
+	char fecha[10];
+	int cantidad;
+	float precioUnit;
+	int IdProd;
+	int IdClient;
+	int IdVend;
+	char estado;
+};
+struct compra{
+	int IdCompra;
+	char fecha[10];
+	int cantidad;
+	int IdProd;
+	char estado;
+};
+
+
+void menu(){
+
+	cout<<"-------------------------REPORTE DE VENTAS----------------";
+	cout<<"\n1.-todo;
+    cout<<"\n2.-por producto;
+    cout<<"\n3.-por cliente;
+    cout<<"\n4.-salir;
+}
+void main(){
+
+
+	do{
+	 menu;
+	 cin>>op;
+	}while(op>4);
+	switch(op){
+case 1:
+	ptr=fopen("venta.dat","r+b");
+	if(ptr!=NULL){
+		fread(&reg,sizeof(reg),1,ptr)
+
