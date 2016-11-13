@@ -1,0 +1,92 @@
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+#include <stdio.h>
+
+using namespace std;
+struct regamigo{
+	char nombre[30];
+	int edad;
+	char sexo;
+	char estado;
+};
+void promedioedad(){
+	FILE *ptr;
+	regamigo reg;
+	int sf=0,sm=0,cf,cm;
+	ptr=fopen("amigos.dat","rb");
+	if(ptr!=NULL){
+		fread(&reg,sizeof(reg),1,ptr);
+		while(feof(ptr)==false){
+			if(reg.estado=='a'){
+				if(reg.sexo=='f'){
+					sf=sf+reg.edad;
+					cf++;
+				}else{
+					sm=sm+reg.edad;
+					cm++;
+				}
+			}
+			fread(&reg,sizeof(reg),1,ptr);
+		}
+		cout<<"promedio de edad femenina :"<<sf/cf;
+		cout<<"promedio de edad masculina :"<<sm/cm;
+		cout<<"promedio total de edad :"<<(sf+sm)/(cf+cm);
+	}
+}
+
+void mostrar(){
+	FILE *ptr;
+	regamigo reg;
+	ptr=fopen("amigos.dat","rb");
+	if(ptr!=NULL){
+		fread(&reg,sizeof(reg),1,ptr);
+		while(feof(ptr)==false){
+		cout<<reg.nombre<<"\t"<<reg.edad<<"\t"<<reg.sexo;
+		fread(&reg,sizeof(reg),1,ptr);
+	    }
+		fclose(ptr);
+	}else{
+		cout<<"archivo no existe";
+	}
+}
+void adicionaramigo(){
+	FILE *ptr;
+	regamigo reg;
+	ptr=fopen("amigos.dat","wb");
+	cout<<"introdusca nombre:\n";
+	gets(reg.nombre);
+	cout<<"edad:\n";
+	cin>>reg.edad;
+	cout<<"sexo f/m:\n";
+	cin>>reg.sexo;
+	reg.estado='a';
+	fwrite(&reg,sizeof(reg),1,ptr);
+	fclose(ptr);
+
+}
+
+void main(){
+	FILE *ptr;
+	regamigo reg;
+	int a;
+	char b;
+	cout<<"adicionando amigo a registro:";
+	cout<<"cuantos amigos desea adicionar:";
+	cin>>a;
+	for(int i=0;i<a;i++){
+	adicionaramigo();
+	}
+	cout<<"lista de amigos:";
+	cout<<" nombre tb"<<"edad tb;"<<"sexo ";
+	 mostrar();
+	 cout<<"desea mostrar promedio de edad s/n:";
+	 cin>>b;
+	 if(b=='s'){
+		 promedioedad();
+
+	 }else{
+		 cout<<"ciao";
+	 }
+	 getch();
+}
