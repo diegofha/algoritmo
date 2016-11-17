@@ -1,0 +1,172 @@
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+#include <string.h>
+using namespace std;
+struct amigos{
+	char nombre[30];
+	int edad;
+	char sexo;
+	char estado;
+};
+void registro(){
+	FILE *ptr;
+	amigos reg;
+	
+	
+	cout<<"\n introducir nombre:\n";
+	do{
+	gets(reg.nombre);
+	}while(strlen(reg.nombre)==0);
+	cout<<"\n edad: \n";
+	cin>>reg.edad;
+	cout<<"\n sexo f/m \n";
+	cin>>reg.sexo;
+	cout<<"estado A/E:\n";
+	cin>>reg.estado;
+	ptr=fopen("misamigos.dat","ab");
+	fwrite(&reg,sizeof(reg),1,ptr);
+	fclose(ptr);
+}
+void mostrar(){
+	FILE *ptr;
+	amigos reg;
+	int c=1;
+	ptr=fopen("misamigos.dat","rb");
+	if(ptr!=NULL){
+		cout<<"------------------------------------------------------------------------\n";
+			cout<<"----------------------------LISTADO---------------------------------\n";
+	       cout<<"nro registro"<<"\t"<<"nombre \t"<<"edad \t"<<"sexo \t";
+		fread(&reg,sizeof(reg),1,ptr);
+		while(feof(ptr)==false){
+			if(reg.estado=='A'){
+			cout<<"\n"<<c++<<"\t \t"<<reg.nombre<<"\t"<<reg.edad<<"\t"<<reg.sexo;
+			}fread(&reg,sizeof(reg),1,ptr);
+		}
+	}else{
+		cout<<"\n el archivo no existe!!! \n";
+	}
+	fclose(ptr);
+}
+void promedio(){
+	FILE *ptr;
+	amigos reg;
+	int sf=0,cf=0,sm=0,cm=0;
+	ptr=fopen("amigos.dat","rb");
+	if(ptr!=NULL){
+		fread(&reg,sizeof(reg),1,ptr);
+		while(feof(ptr)==false){
+			if(reg.estado=='A'){
+			if(reg.sexo=='f'){
+				sf=sf + reg.edad;
+				cf++;
+			}else{
+				sm=sm + reg.edad;
+				cm++;
+			}
+		}
+			
+		fread(&reg,sizeof(reg),1,ptr);
+	
+	 } 
+		
+	if(cf>0){
+		cout<<"promedio de damas \n:"<<sf/cf;}
+	if(cm>0){
+		cout<<"promedio de varones \n:"<<sm/cm;}
+	if(cm+cf>0){
+		cout<<"promedio total \n:"<<(sf+sm)/(cf+cm);}
+	}else{
+		cout<<"\n el archivo no existe!!!!";
+ }fclose(ptr);
+}
+
+void buscar(int nro){
+	FILE *ptr;
+	amigos reg;
+	char r;
+	ptr=fopen("amigos.dat","rb");
+	if(ptr!=NULL){
+		fseek(ptr,nro-1*sizeof(reg),SEEK_SET);
+		fread(&reg,sizeof(reg),1,ptr);
+		if(feof(ptr)==false){
+			if(reg.estado=='A'){
+				cout<<"\nel registro es:\n";
+				cout<<nro<<"\t"<<reg.nombre<<"\t"<<reg.edad<<"\t"<<reg.edad;
+				cout<<"\n desea desabilitarlo";
+				cin>>r;
+				if(r=='s'){
+					reg.estado='E';
+					fseek(ptr,(nro-1)*sizeof(reg),SEEK_SET);
+					fwrite(&reg,sizeof(reg),1,ptr);
+				}
+			}else{
+				cout<<"\n el registro fue eliminado";
+			}
+		}else{
+			cout<<"\n no existe registro :";
+		}
+	}else{
+		cout<<"\n archivo no existe!!!";
+	 }fclose(ptr);
+}
+
+
+
+
+void menu(){
+	int opcion,nro;
+	char r;
+	do{
+	cout<<"-----------------------------------------------------\n";
+	cout<<"---------------BIENVENIDO----------------------------\n";
+	cout<<"-----------------------------------------------------\n";
+	cout<<"1.-agregar registro:\n";
+	cout<<"2.-ver lista:\n";
+	cout<<"3.-ver promedio:\n";
+	cout<<"4.-buscar por nro registro \n";
+	cout<<"5.-salir:\n";
+	cout<<"elija una opcion \n";
+	cin>>opcion;
+    switch(opcion){
+	case 1:cout<<"\n-------------------------REGISTRO-----------------------------\n";
+		   registro();
+		
+		   break;
+	case 2:
+		
+			mostrar();
+		    
+		cout<<"\n deshabilitar a alguien ? s/n \n";
+		cin>>r;
+		if(r=='s'){
+			cout<<"\n introducir nro de registro:";
+			cin>>nro;
+			buscar(nro);
+		} break;
+	case 3:
+		    promedio();
+		    break;
+
+	case 4:cout<<" \n ingrese el nro de registro a buscar:";
+		       cin>>nro;
+			   buscar(nro);
+		       break;
+	case 5:
+		cout<<"\n saliendo......";
+		   break;
+	}
+	}while(opcion!=5);
+}
+void main(){
+	
+	menu();
+	
+	getch();
+}
+	
+
+
+
+
+
