@@ -1,0 +1,87 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+	int contardig(int n){
+		int c=0;
+		while(n>0){
+		n=n/10;
+		c++;
+		}
+		return(c);
+	}
+	int contarimpares(int n){
+		int ci=0,d;
+		while(n>0){
+			d=n%10;
+			if(d%2!=0){
+				ci++;
+			}
+			n=n/10;
+		}
+		return(ci);
+	}
+
+
+	int invertirnum(int n){
+		int m=0;
+		while(n>0){
+			m=(m*10)+(n%10);
+			n=n/10;
+		}
+		return(m);
+	}
+	int eliminardigpares(int n){
+		int m=0,d;
+		while(n>0){
+			d=n%10;
+			if(d%2!=0){
+				m=(m*10)+d;
+			}
+			n=n/10;
+		}
+		return(invertirnum(m));
+	}
+
+	void main(){
+		int nro,r,i,op;
+		
+		cout<<"ingrese nro natural :";
+		cin>>nro;
+		do{
+
+		cout<<" \n----------------MENU DE OPCIONES-----------";
+		cout<<"\n-------------------------------------------";
+		cout<<"\n1.-digitos del numero";
+		cout<<"\n2.-digitos impares del numero";
+		cout<<"\n3.-invertir numero ";
+		cout<<"\n4.-eliminar digitos pares";
+		cout<<"\n0.-salir";
+		cout<<"\nelija una opcion:";
+		cin>>op;
+
+
+			switch(op){
+			case 1:
+					r=contardig(nro);
+					cout<<"\n la cantidad de digitos de"<<nro<<" ,es-----> :"<<r;
+					break;
+			case 2:
+					i=contarimpares(nro);
+					cout<<"\n la cantidad de digitos impares de "<<nro<<" ,es-----> :"<<i;    
+		
+					break;
+				
+			case 3:
+				
+				 cout<<"el numero invertido es: "<<invertirnum(nro);
+				 break;
+			case 4:
+				cout<<"el numero sin digitos pares es:"<<eliminardigpares(nro);
+				break;
+			}
+
+		}while(op);
+		
+	}
