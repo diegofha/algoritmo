@@ -1,0 +1,102 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+void numerosimpares(int n){
+	int i,k=1;
+	for(i=0;i<n;i++){
+		cout<<k<<" ";
+		k=k+2;
+	}
+}
+void mostrarImparesDescendente(int n){
+	int i,k=(n*2)-1;
+	for(i=0;i<n;i++){
+		cout<<k<<" ";
+		k=k-2;
+	}
+}
+
+void mostrarParImpar(int n){
+	int i,par=2,impar=1,k=1;
+	for(i=0;i<n;i++){
+		if(k==1){
+			cout<<par<<" ";
+			par=par+2;
+			k=0;
+		}else{
+			cout<<impar<<" ";
+			impar=impar+2;
+			k=1;
+		}
+	}
+}
+bool esprimo(int n){
+	int i;
+	for(i=2;i<n;i++){
+		if(n%i==0){
+			return (false);
+		}
+	}return(true);
+}
+int obtenerNSimoPrimo(int n){
+	int c=0;int contadorprimos=0;
+	while(contadorprimos<n){
+		c++;
+		if(esprimo(c)==true){
+			contadorprimos++;
+		}
+	}
+		return(c);
+	}
+void mostrarPrimerosPrimos(int n){
+	int i;
+	cout<<endl<<"los primeros numeros primos son:\n\n";
+	for(i=0;i<n;i++){
+		cout<<obtenerNSimoPrimo(i+1)<<" ";
+	}
+}
+void main(){
+	int n,opcion;
+	cout<<"ingrese cantidad de numeros a mostrar";
+	cin>>n;
+	cout<<endl;
+	do{
+		cout<<"\n\n--------------MENU DE OPCIONES------------------";
+		cout<<"\n--------------------------------------------------";
+		cout<<"\n1.-mostrar numeros impares";
+		cout<<"\n2.-mostras numeros impares descendentemente";
+		cout<<"\n3.- mostrar par- impares";
+		cout<<"\n4.-primeros numeros primeros";
+		cout<<"\n0.-salir";
+		cout<<"\nelija una opcion\n";
+		cin>>opcion;
+	    switch(opcion){
+		case 1:
+			cout<<"\nsecuencias de numeros impares es: \n";
+			numerosimpares(n);
+			break;
+		case 2:
+			cout<<"\nsecuencia de numeros impares descendente es: \n";
+            mostrarImparesDescendente(n);
+			break;
+		case 0:
+			cout<<"\nsalir";
+			break;
+		case 3:
+			cout<<"\nsecuencias de pares impares: \n";
+			mostrarParImpar(n);
+			break;
+		case 4:
+			
+			mostrarPrimerosPrimos(n);
+			break;
+
+		default: 
+			cout<<"\nerror !!!!!! tecla no prevista";
+            break;
+		                                                                                                                                                                                                                                                                                                                                                                                                                    
+		};
+	}while(opcion!=0);
+	getch();
+}
