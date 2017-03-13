@@ -28,16 +28,19 @@
  }
 
  bool existadigitorepetitivo(int v[],int n){
-	 int c=0,k=0;
+	 int c=0,k=0,j;
 		 for(int i=0;i<n;i++){
-			 if(v[i]==k){
+			 for(j=i;j<n;j++){
+			 if(v[j]==k){
 				 c++;
 				 if(c==2){
 					 return(true);
 				 }
-			 }else{
-				 k++;
 			 }
+			 if(j==n-1){
+				 c=0;
+			 }
+			 }k++;
 		 }return(false);
  }
  int digitorepetido(int v[],int n){
@@ -89,7 +92,7 @@ void mostrar(int v[],int n){
 	 
 	 meterdigito(v,c);
 	 
-	 while(existadigitorepetitivo(v,n)==true){
+	 while(existadigitorepetitivo(v,c)==true){
 		  
 		 eliminarcasilla( v,c,x);
 		 x++;}
@@ -105,3 +108,7 @@ void mostrar(int v[],int n){
 	  eliminardigitorepetivos(n);
 	  getch();
  }
+	
+	
+	
+	
