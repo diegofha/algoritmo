@@ -1,0 +1,107 @@
+#include <iostream>
+#include <conio.h>
+ using namespace std;
+ int cantidaddigitos(int n){
+	 int c=0;
+	 while(n>0){
+		 n=n/10;
+		 c++;
+	 }return (c);
+ }
+
+
+
+ void invertirvector(int v[],int n){
+	 int i,aux;
+	 for(i=0;i<n/2;i++){
+		 aux=v[i];
+		 v[i]=v[n-1-i];
+		 v[n-1-i]=aux;
+	 }
+ }
+ void meterdigito(int v[],int n){
+	 int i,c=cantidaddigitos(n);
+		 for(i=0;i<c;i++){
+			 v[i]=n%10;
+		 }
+		 invertirvector(v,c);
+ }
+
+ bool existadigitorepetitivo(int v[],int n){
+	 int c=0,k=0;
+		 for(int i=0;i<n;i++){
+			 if(v[i]==k){
+				 c++;
+				 if(c==2){
+					 return(true);
+				 }
+			 }else{
+				 k++;
+			 }
+		 }return(false);
+ }
+ int digitorepetido(int v[],int n){
+	 int i,k=0,j,c=0,r;
+	  for(i=0;i<n;i++){
+		  for(j=i+1;j<n;j++){
+			 if(v[i]==k){
+				 c++;
+				 if(c>=2){
+					 r=k;
+					 i=n;
+					 j=n;
+				 }
+			 }else{
+				 if(j=n-1){
+					 c=0;}
+		   }
+		  }
+			k++;
+		 }return(r);
+ }
+
+
+
+ void eliminarcasilla(int v[],int &n,int x){
+	 int i,k;
+	 for(i=0;i<n;i++){
+		 if(v[k]==x){
+				  for(k=i;k<n-1;k++){
+				 v[k]=v[k+1];
+				 }
+				  n--;
+				  i--;
+		 }
+	 }
+ }
+		
+void mostrar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<v[i]<<" ";
+	}
+}
+
+
+
+ void eliminardigitorepetivos(int n){
+	 int v[100],c=cantidaddigitos(n),x=0;
+	 
+	 meterdigito(v,c);
+	 
+	 while(existadigitorepetitivo(v,n)==true){
+		  
+		 eliminarcasilla( v,c,x);
+		 x++;}
+	 mostrar(v,c);
+ }
+
+
+ void main(){
+	 int n,v[100];
+	 cout<<"ingrese numero:  ";
+	 cin>>n;
+	 cout<<"\n";
+	  eliminardigitorepetivos(n);
+	  getch();
+ }
