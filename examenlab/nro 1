@@ -1,0 +1,121 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+void funcion(int n){
+	int i,j;
+	for(i=1;i<n;i++){
+		cout<<i<<"\n";
+		for(j=i+1;j<=i+1;j++){
+			cout<<j<<" ";
+		}
+	}
+}
+
+
+
+
+
+void main(){
+	int n;
+	cin>>n;
+	funcion(n);
+	getch();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*void cargar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<"\nelemento["<<i<<"] :";
+		cin>>v[i];
+	}
+}
+void mostrar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<v[i]<<" ";
+	}
+}
+int  elementomenor(int v[],int n){
+	int i,menor=99999;
+	for(i=0;i<n;i++){
+		if(v[i]<menor){
+			menor=v[i];
+		}
+	}return(menor);
+}
+
+int menordetodos(int a,int b){
+	int menor;
+	if(a<b){
+		menor=a;
+	}else{
+		menor=b;
+	}
+	return(menor);
+}
+
+void eliminarcasilla(int v[],int &n,int x){
+	int i,k;
+	x=elementomenor(v,n);
+	for(i=0;i<n;i++){
+		if(v[i]==x){
+			for(k=i;k<n-1;k++){
+				v[k]=v[k+1];
+			}n--;
+			i--;
+		}
+	}
+}
+
+
+
+void funcion(int v[],int a,int vb[],int b,int vc[],int c){
+	int i,j,menora,menorb;
+	c=a+b;
+	for(i=0;i<c;i++){
+		menora=elementomenor(v,a);
+		menorb=elementomenor(vb,b);
+			vc[i]=menordetodos(menora,menorb);
+			cout<<vc[i]<<"  \n";
+			/*if(menora>menorb && menora!=menorb){
+				vc[i++]=menora;
+			}else{
+				if(menorb>menora && menorb!=menora){
+					v[i++]=menorb;
+				}
+			}
+			eliminarcasilla(v,a,menora);
+	        eliminarcasilla(vb,b,menorb);
+			c=a+b;
+    }
+	mostrar(vc,c);
+}
+	
+void main(){
+	int  va[100],a,vb[100],b,vc[100],c;
+	cout<<"ingrese tamaños de los vectores:\n";
+	cin>>a;
+	cout<<"\n";
+	cin>>b;
+	cargar(va,a);
+	mostrar(va,a);
+	cargar(vb,b);
+	mostrar(vb,b);
+    funcion(va,a,vb,b,vc,c);
+	getch();
+
+}*/
