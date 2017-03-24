@@ -1,0 +1,127 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+struct vectores{
+	int vec[100];
+};
+void cargar(vectores v[],int n){
+	int i,j;
+	for(i=0;i<n;i++){
+			for(j=0;j<n;j++){
+				cout<<"ingrese elemento del vector ["<<i<<"] casilla subvector["<<j<<"]:";
+				cin>>v[i].vec[j];
+			}
+	}
+}
+
+void mostrar (vectores v[],int n){
+	int i,j;
+	for(i=0;i<n;i++){
+			for(j=0;j<n;j++){
+				cout<<v[i].vec[j]<<" ";
+			}cout<<"    ";
+	}
+}
+
+void invertir(int v[],int n){
+	int i,aux;
+	for(i=0;i<n/2;i++){
+			aux=v[i];
+			v[i]=v[n-1-i];
+			v[n-1-i]=aux;
+		}
+	}
+
+void invertirvectoresdevectores(vectores v[],int n){//invertir subvector de vectores
+	int i;
+	for(i=0;i<n;i++){
+			invertir(v[i].vec,n);
+		}
+	}
+
+void invertirtodo(vectores v[],int n){//INVIERTE EL VECTOR DE VECTORES COMPLETAMENTE 123 456 789 ---> 987 654 321
+	int i;
+	vectores aux;
+	 invertirvectoresdevectores( v,n);
+	 for(i=0;i<n/2;i++){
+		 aux=v[i];
+		 v[i]=v[n-1-i];
+		 v[n-1-i]=aux;
+	 }
+}
+
+
+
+
+
+/*
+UNIRLO EN UN TERCER VECTOR Y VOLVERLO APONER
+
+void invertirVecDeSubVecCompletamente(vectores v[],int n){
+	int i,vector[100];
+	unirlosenunosolo(v[i].vec,vector,n);
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			vector[k]=v[i].vec[j];
+		}
+	}
+}
+*/
+
+void burbuja(int v[],int n){
+	int i,j,aux;
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			if(v[i]>v[j]){
+				aux=v[i];
+				v[i]=v[j];
+				v[j]=aux;
+			}
+		}
+	}
+}
+
+
+
+void unirenunosolo(vectores v[],int n,int vaux[]){
+	int i,j,k=0;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			vaux[k++]=v[i].vec[j];
+		}
+	}
+	burbuja(vaux,k);
+}
+
+void ordenarascendetemente(vectores v[],int n){//ordena el vector de vectores ascendentemente : 352 652 786--->223 556 678
+	int i,j,vaux[100],k=0;
+		unirenunosolo(v,n,vaux);
+		for(i=0;i<n;i++){
+			for(j=0;j<n;j++){
+				v[i].vec[j]=vaux[k++];
+			}
+		}
+}
+
+
+
+
+void main(){
+	int n;
+	vectores v[100];
+	cout<<"ingrese tamaño del vector:";
+	cin>>n;
+	 cargar(v,n);
+	 mostrar(v,n);
+	 /*cout<<"\n";
+	invertirvectoresdevectores(v,n);
+	 mostrar(v,n);
+	 	 cout<<"\n";
+	 invertirtodo(v,n);
+	  mostrar(v,n);
+	  */cout<<"\nvector ordenado ascendentemente \n";
+	   ordenarascendetemente(v,n);
+	   mostrar(v,n);
+     getch();
+}
