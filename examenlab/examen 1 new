@@ -1,0 +1,143 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+//piramide de numeros si n=3
+//1
+//22
+//333
+//333
+//22
+//1
+/*void funcion(int n){
+	int i,j,k=0,h;
+	for(i=1;i<=n;i++){
+		cout<<"\n";
+		k++;
+		for(j=0;j<i;j++){
+			cout<<k<<" ";
+		}
+
+	}
+	for(h=0;h<n;h++){
+		    cout<<"\n";
+				for(j=0;j<k;j++){
+			cout<<k<<" ";
+			}
+			 k--;
+			}
+	
+}
+void main(){
+	int n;
+	cin>>n;
+	cout<<"\n";
+	funcion(n);
+	getch();
+}
+*/
+
+
+
+
+void cargar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<"\nelemento["<<i<<"] :";
+		cin>>v[i];
+	}
+}
+void mostrar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<v[i]<<" ";
+	}
+}
+int  elementomenor(int v[],int n){
+	int i,menor=99999;
+	for(i=0;i<n;i++){
+		if(v[i]<menor){
+			menor=v[i];
+		}
+	}return(menor);
+}
+
+int menordetodos(int a,int b){
+	int menor;
+	if(a<b){
+		menor=a;
+	}else{
+		menor=b;
+	}
+	return(menor);
+}
+
+void eliminarcasilla(int v[],int &n,int x){
+	int i,k;
+	for(i=0;i<n;i++){
+		if(v[i]==x){
+			for(k=i;k<n-1;k++){
+				v[k]=v[k+1];
+			}n--;
+			i--;
+		}
+	}
+}
+
+	int mayordetodos(int a,int b){
+	int mayor;
+	if(a>b){
+		mayor=a;
+	}else{
+		mayor=b;
+	}
+	return(mayor);
+}
+
+
+void funcion(int v[],int a,int vb[],int b,int vc[],int c){
+	int i,menora,menorb;
+	c=a+b;
+	for(i=0;i<c;i++){
+		menora=elementomenor(v,a);
+		cout<<"\n"<<menora;
+		menorb=elementomenor(vb,b);
+		cout<<"\n"<<menorb;
+			vc[i]=menordetodos(menora,menorb);
+			cout<<"\n"<<vc[i]<<"\n";
+			/*if(menora>menorb && menora!=menorb){
+				vc[i++]=menora;
+				cout<<"\n el sigte"<<vc[i];
+			}else{
+				if(menorb>menora && menorb!=menora){
+					v[i++]=menorb;
+					cout<<"\n el sigte"<<vc[i];
+				}
+			}*/
+			if(menora!=menorb){
+				v[i++]=mayordetodos(menora,menorb);
+				cout<<"\n mayor de todos "<<v[i]<<"\n";
+
+			}
+			eliminarcasilla(v,a,menora);
+	        eliminarcasilla(vb,b,menorb);
+			c=a+b;
+    }
+	cout<<"\n";cout<<"\n el sigte"<<vc[i];
+	mostrar(vc,c);
+}
+	
+void main(){
+	int  va[100],a,vb[100],b,vc[100],c;
+	cout<<"ingrese tamaños de los vectores:\n";
+	cin>>a;
+	cout<<"\n";
+	cin>>b;
+	cargar(va,a);
+	mostrar(va,a);
+	cout<<"\n";
+	cargar(vb,b);
+	mostrar(vb,b);
+    funcion(va,a,vb,b,vc,c);
+	getch();
+
+}
