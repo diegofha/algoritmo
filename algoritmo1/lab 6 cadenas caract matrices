@@ -1,0 +1,114 @@
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+#define fil 20
+#define colum 20
+
+using namespace std;
+
+bool esvocal(char car){
+		if(car=='a'||car=='A'||car=='e'||car=='E'||car=='i'||car=='I'||car=='o'||car=='O'||car=='u'||car=='U'){
+			return(true);
+		}else{
+			return(false);
+        }
+}
+
+int contarvocales(char cad[]){
+	int i,c=0,n=strlen(cad);
+	for(i=0;i<n;i++){
+		if(esvocal(cad[i])==true){
+			c++;
+		}
+	}
+	return(c);
+}
+void invertir(char cad[]){
+	int i,n=strlen(cad);
+	char aux;
+	for(i=0;i<n/2;i++){
+		aux=cad[i];
+		cad[i]=cad[n-1-i];
+		cad[n-1-i]=aux;
+	}
+}
+/*void eliminarcasilla(char v[],int &n,int x){
+	int i,k;
+	for(i=0;i<n;i++){
+		if(i==x){
+			for(k=i;k<n-1;k++){
+				v[k]=v[k+1];
+			}
+			i--;
+			n--;
+		}
+	}v[n]='\0';
+}*/
+void eliminarvocal(char cad[]){
+	int i,n=strlen(cad),k;
+	for(i=0;i<n;i++){
+		if(esvocal(cad[i])==true){
+			/*eliminarcasilla(cad,n,i);*/
+			for(k=i;k<n-1;k++){
+				cad[k]=cad[k+1];
+			}
+			i--;
+			n--;
+			
+		}
+		
+	}cad[n]='\0';
+	cout<<"\nla cadena es:\n";
+	cout<<cad;
+}
+
+
+struct matcadena{
+	char cad[80];
+};
+
+  void cargar(matcadena mat[100][100],int n,int m){
+	int i,j;
+    for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<"\ningrese cadena: ";
+			do{
+			
+			gets(mat[i][j].cad);
+		}while(strlen(mat[i][j].cad)==0);
+			
+	}
+  }
+  }
+
+   void mostrar(matcadena mat[100][100],int n,int m){
+	int i,j;
+    for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<mat[i][j].cad<<"\t";
+		}
+	}cout<<"\n";
+  }
+
+void main(){
+	int n,m;
+	char cadena[80];
+	matcadena mat[100][100];
+	/*cout<<"ingrese cadena:\n";
+	gets(cadena);
+	
+	cout<<"la cantidad de vocales de la cadena es:"<<contarvocales(cadena);
+	cout<<"\nla cadena invertida es:";
+	invertir(cadena);
+	cout<<"\n"<<cadena<<"\n\n";
+	cout<<"eliminar vocales:\n";
+	 eliminarvocal(cadena);*/
+	 cout<<"\ningrese cant de filas y columnas\n";
+	 cin>>n;
+	 cout<<"\n";
+	 cin>>m;
+	 cargar(mat,n,m);
+	 cout<<"\n";
+	 mostrar(mat,n,m);
+	getch();
+}
