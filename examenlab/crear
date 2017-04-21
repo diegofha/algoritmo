@@ -1,0 +1,72 @@
+#include <iostream>
+#include <conio.h>
+ using namespace std;
+ struct vectormatrices{
+
+	 int mat[100][100];
+ };
+ bool esprimo(int  n){
+	 for(int i=2;i<n;i++){
+		 if(n%i==0){
+			 return(false);
+		 }
+	 }return (true);
+ }
+  bool esfibonacci(int n){
+	  bool k=false;
+	  int a,b,c=0;
+	  a=0;
+	  b=1;
+	  for(int i=0;i<n;i++){
+		  c=a+b;
+		  a=b;
+		  b=c;
+		  if(n==c){
+			  k=true;
+		  
+		  }
+	  }if(c==0){
+		  k=true;
+	  }
+	  return(k);
+  }
+
+ int conseguirnsimoprimo(int n){
+	 int i,r=0;
+	 for(i=0;i<=n;i++){
+	    while(r==0){
+			if(esprimo(i)==true){
+			 r=i;
+		 
+	 }
+ }
+	 }return(r);
+
+ }
+
+
+ void cargarvector(vectormatrices v[],int n){
+	 int i,j,l,m,primo=1,fibo=0,band=0
+		 i=0;
+		 for(m=0;m<n;m++){
+			 for(l=0;l<n;l++){
+				 v[i].mat[m][l]=0;
+			 }
+		 }
+
+		 for(i=0;i<n;i++){
+			 for(j=0;j<n;j++){
+				 if(band==0){
+					 if(v[i].mat[i][j]==0){
+					 v[i].mat[i][j]=conseguirnsimoprimo(primo);
+
+
+
+
+  void main(){
+	  int n,r;
+	  cin>>n;
+	  
+	 
+	  getch();
+  }
