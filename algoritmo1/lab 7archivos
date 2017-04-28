@@ -1,0 +1,82 @@
+#include <iostream>
+#include <conio.h>
+#include <string.h>
+#include <stdio.h>
+
+using namespace std;
+struct regamigos{
+	char nombre[30];
+	char sexo;
+	int edad;
+	char estado;
+};
+void creararchivos(char nombrearchivo[]){
+	FILE *ptr;
+	ptr = fopen(nombrearchivo,"wb");
+	fclose(ptr);
+}
+void registraramigos(char nombrearchivo[]){ //registrar o adicionar
+	FILE *ptr;
+	regamigos reg;
+	ptr = fopen(nombrearchivo,"ab");
+	cout<<"\n nombre:";
+	do{
+	gets(reg.nombre);
+	
+	}while(strlen(reg.nombre)==0);
+	cout<<"\nsexo(f/m):";
+		
+	do{
+
+	cin>>reg.sexo;
+	if(reg.sexo!='f' && reg.sexo!='m'){
+		cout<<"\nsolo debe introducir f femenino o m masculino\n";
+	}
+	}while(reg.sexo!='f' && reg.sexo!='m');
+	cout<<"\nedad:";
+	cin>>reg.edad;
+	reg.estado='A';
+	fwrite(&reg,sizeof(reg),1,ptr);
+	fclose(ptr);
+}
+void mostraramigos(char nombrearchivo[]){
+	FILE *ptr;
+	regamigos reg;
+	 ptr= fopen(nombrearchivo,"rb");
+	  cout<<"\n nombre:\tsexo: \tedad:\n";
+	 if(feof(ptr)==false){
+		 fread(&reg,sizeof(reg),1,ptr);
+	  while(feof(ptr)==false){
+		 
+		 cout<<"\n"<<reg.nombre<<"\t\t"<<reg.sexo<<" \t"<<reg.edad;
+		 fread(&reg,sizeof(reg),1,ptr);
+	 }
+	 fclose(ptr);
+}else{
+	cout<<"\n error !! archivo no exite!!";
+	 }
+}
+
+
+void main(){
+	int op;
+	do{
+	cout<<"\n----------------------------MENU DE OPCIONES------------------------------\n";
+	cout<<"\n--------------------------------------------------------------------------";
+	cout<<"\n1.-registrar amigos";
+	cout<<"\n2.-mostrar amigos";
+	cout<<"\n3.-crear archivos";
+	cout<<"\n0.-salir";
+	cout<<"\nelija una opcion:  ";
+
+	cin>>op;
+    switch(op){
+	case 1:registraramigos("amigos.dat");break;
+	case 2:mostraramigos("amigos.dat");break;
+	case 3:creararchivos("amigos.dat");break;
+    case 0:cout<<"\nSALIR";break;
+	} 
+ }while(op!=0);
+	
+	
+}
