@@ -142,7 +142,7 @@ void registroedadmayor(){
 	fread(&reg,sizeof(reg),1,ptr);
 	while(feof(ptr)==false){
 		if(reg.estado=='A' && reg.edad==may ){
-			cout<<"\nla edad mayor pertenece a --->"<<cout<<reg.nombre;
+			cout<<"\nla edad mayor pertenece a --->"<<reg.nombre;
 			}
 		fread(&reg,sizeof(reg),1,ptr);
 		}
