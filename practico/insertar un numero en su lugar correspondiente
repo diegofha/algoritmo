@@ -1,0 +1,66 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+void cargar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<"ingrese ["<<i<<"]: ";
+		cin>>v[i];
+		cout<<endl;
+	}
+
+}
+void mostrar(int v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+		cout<<v[i]<<" ";
+	}
+
+}
+void insertar(int v[],int &n,int x){
+	int i,band=1,aux,aux2,a,k;
+	for(i=0;i<n;i++){
+		if(v[i]>x){
+			a=i;
+			aux=v[i];
+			v[i]=x;
+			i=n;
+			n++;
+		}else{
+			if(i==n-1){
+			v[i+1]=x;
+			n++;
+			i=n;
+			a=n;
+			}
+		}
+	}
+	
+	for(k=a+1;k<n;k++){
+		if(band==1){
+		aux2=v[k];
+		v[k]=aux;
+		band=2;
+		}else{
+		aux=v[k];
+		v[k]=aux2;
+		band=1;
+		}
+	}
+
+}
+void main(){
+	int n,v[100],x;
+	cout<<"\ntamaño del vector"<<endl;
+	cin>>n;
+	cargar(v,n);
+	mostrar(v,n);
+	cout<<endl;
+	cout<<"ingrese numero para insertar :\n";
+	cin>>x;
+	insertar(v,n,x);
+	mostrar(v,n);
+getch();
+}
