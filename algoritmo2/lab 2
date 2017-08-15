@@ -1,0 +1,82 @@
+
+#include "stdafx.h"
+#include <iostream>
+//#include <conio.h>
+using namespace System;
+using namespace std;
+const int n=20;
+const int m=25;
+const int o=45;
+int main(array<System::String ^> ^args)
+{
+	float A[n],B[m],C[o];
+	int tamanoA,tamanoB,tamanoC,i,j,k;
+	cout<<"ingrese tamaño del polinomio A";
+	cin>>tamanoA;
+	i=0;
+	while(i<tamanoA)
+	{
+		cout<<"polinomio A["<<i<<"]:";
+		cin>>A[i];
+		i++;
+	}
+	cout<<"ingrese tamaño del polinomio B";
+	cin>>tamanoB;
+	i=0;
+	while(i<tamanoB)
+	{
+		cout<<"polinomio B["<<i<<"]:";
+		cin>>B[i];
+		i++;
+	}
+	int opcion;
+	cout<<"1:sumar"<<endl;
+	cout<<"0:salir"<<endl;
+	cout<<"de la opcion a realizar ";
+	cin>>opcion;
+	
+	while(opcion>0 && opcion<=1)
+	{
+	if(opcion==1)
+	{
+	i=0;
+	 j=0;
+	 k=0;
+	  while(i<tamanoA && j<tamanoB)
+	  {
+	  C[k]=A[i]+B[j];
+	  i++;
+	  j++;
+	  k++;
+
+	  }
+	  while(i<tamanoA)
+	  {
+	  C[k]=A[i];
+	  i++;
+	  k++;
+	  }
+	    while(j<tamanoB)
+		{
+	       C[k]=B[j];
+	       j++;
+	       k++;
+	  } 
+		tamanoC=k;
+		//mostrar resultado
+		i=0;
+		while(i<tamanoC)
+		{
+		cout<<"polinomio C["<<i<<"]:"<<C[i]<<endl;
+		i++;
+		}
+	  }
+	cout<<"1:sumar"<<endl;
+	cout<<"0:salir"<<endl;
+	cout<<"de la opcion a realizar:";
+	cin>>opcion;
+  }
+
+	getchar();
+    return 0;
+}
