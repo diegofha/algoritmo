@@ -1,0 +1,20 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+using namespace std;
+const int M=20;
+const int N=25
+const int O=45;
+void leer(float A[N],int &tamanoA,string letra)
+{
+    int i;
+	cout<<"tamaño del polinomio A"<<letra<<":";
+	cin>>tamanoA;
+	i=0;
+	while(i<tamanoA)
+	{
+		cout<<"polinomio "<<letra<<" :"<<i<<"]:";
+		cin>>A[i];
+		i++;
+	}
+}
