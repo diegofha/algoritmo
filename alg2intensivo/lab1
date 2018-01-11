@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "iostream"
 #include "conio.h"
 using namespace std;
@@ -105,13 +105,17 @@ for(i=0;i<n;i++){
 }return mayor;
 }
 //hacer un program para eliminar el numero mayor de un vector
-void eliminarMayor(int v[],int n){
-int i,pos;
-for(i=0;i<n;i++){
-   if(mayor(v,n)==v[i]){
-   eliminarPosicion(v,n,i);
 
-   }
+//NOTA EL AMPERSAND DEBE SER COLOCADO POR QUE EN CADA FUNCION NUEVA PARA Q FUNCIONE EN TODAS LAS FUNCIONES
+void eliminarMayor(int v[],int &n){
+int i,may=mayor(v,n);
+while(i<n){
+   if(may==v[i]){
+   eliminarPosicion(v,n,i);
+   
+   i=0;
+   }else
+   i++;
  }
 }
 
@@ -131,18 +135,20 @@ void eliminarnum(int v[],int &n,int x){
 	int i;
 	for(i=0;i<n;i++){
 		if(x==v[i]){
-	eliminarPosicion( v, n,i);
-	}
+	    eliminarPosicion( v, n,i);
+	    i=-1;
+	    }
 	}
 }
-void frecuencia(int v[],int n){
-	int i=0,f=v[i];
+void frecuencia(int v[],int &n){
+	int i=0;
 	cout<<"elemento"<<"\t"<<"cant"<<endl;
-	while(i<=mayor(v,n)){
-	cout<<v[i]<<"\t"<<cantdefrec(v,n,f);
+	while(i<n){
+	cout<<v[i]<<"\t"<<cantdefrec(v,n,v[i]);
 	cout<<"\n";
-	eliminarnum(v,n,v[i]);
 	
+	eliminarnum(v,n,v[i]);
+	i=0;
   }
 }
 
@@ -196,10 +202,11 @@ void main()
 	//rotar(v,n,k);
 	//mostrar(v,n);
 
-	//*eliminarMayor(v,n);
-	//*frecuencia(v,n);
-	cin>>x;
-	cout<<"mayor cercano es:"<<mayorcercano(v,n,x);
+	eliminarMayor(v,n);
+	mostrar(v,n);
+	//frecuencia(v,n);
+	//cin>>x;
+	//cout<<"mayor cercano es:"<<mayorcercano(v,n,x);
 	getch();
 	
 }
