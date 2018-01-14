@@ -1,0 +1,197 @@
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+
+using namespace std;
+void cargar1(int mat[20][20],int n,int m){
+	for(int i=0;i < n;i++){
+		for(int j=0;j < m;j++){
+		    cout<<"elemento ["<<i<<"]["<<j<<"]:"; 
+			cin>>mat[i][j];
+			
+		}
+	}
+}
+void mostrar(int mat[20][20],int n,int m){
+	cout<<endl;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+		    
+			cout<<" "<<mat[i][j]<<" ";
+		}
+		cout<<"\n";
+	}
+}
+
+
+
+
+void mostrar(int v[] ,int n){
+for(int i=0;i<n;i++){
+	cout<<v[i]<<" ";
+}
+}
+
+
+
+void burbuja(int v[],int n){
+	int aux;
+	for(int i =0; i<n; i++){
+		for(int j = i+1; j <n;j++){
+		if(v[i]>v[j]){
+		aux=v[i];
+		v[i]=v[j];
+		v[j]=aux;
+		 }
+		}
+	}
+}
+void metervector(int mat[20][20],int n,int m,int v[],int &a){
+ for(int i =0; i<n; i++){
+        for(int j = 0; j <m;j++){
+				v[a]=mat[i][j];
+				a++;
+			}
+		}
+ }
+
+ void llenar(int mat[20][20],int n,int m){
+ for(int k=0;k<n;k++){
+		for(int j=0;j<m;j++){
+			mat[k][j]=0;
+		}
+	}
+ 
+ }
+ void espiral(int a[20][20],int grado){
+	int paso=1,cont=1;
+for(int k=0;k<grado;k++)for(int j=0;j<grado;j++)a[k][j]=0;
+/*
+Se tiene que inicializar la matriz en 0
+Paso 1: Hacia la derecha
+Paso 2: Hacia abajo
+Paso 3: Hacia la izquierda
+Paso 4: Hacia arriba
+*/
+    for(int i=0;i<grado;i++){
+ 
+	    if(paso==1){
+			for(int j=0;j<grado;j++){
+				       if(a[i][j] == 0)
+				       a[i][j]=cont++;
+			 }//Fin del for
+					     }//Fin del paso 1
+	    paso++;
+ 
+ 
+	     if(paso==2){
+		       for(int j=0;j<grado;j++){
+			       if(a[j][grado-(i+1)]==0)
+			       a[j][grado-(i+1)]=cont++;
+			       }//fin del for
+				      }//fin del paso 2
+ 
+	     paso++;
+	     if(paso==3){
+			  for(int j=grado-1;j>=0;j--){
+				 if(a[grado-(i+1)][j] == 0)
+				 a[grado-(i+1)][j]=cont++;
+				 }//fin del for
+				 }//fin del paso 3
+		paso++;
+ 
+		if(paso==4){
+			    for(int j=grado-1;j>=0;j--){
+				    if(a[j][i] == 0)
+				    a[j][i]=cont++;
+				    }//fin del for
+				    }//fin del paso 4
+		paso=1;
+ 
+ 
+     }
+ 
+     }
+ void ordenarcaracol(int a[20][20],int grado,int v[],int b){
+ int paso=1,cont=1;
+ metervector(a,grado,grado,v,b);
+ burbuja(v,b);
+ cout<<endl<<endl;
+for(int k=0;k<grado;k++)for(int j=0;j<grado;j++)a[k][j]=0;
+/*
+Se tiene que inicializar la matriz en 0
+Paso 1: Hacia la derecha
+Paso 2: Hacia abajo
+Paso 3: Hacia la izquierda
+Paso 4: Hacia arriba
+*/
+int k=0;
+    for(int i=0;i<grado;i++){
+ 
+	    if(paso==1){
+			for(int j=0;j<grado;j++){
+				       if(a[i][j] == 0){
+						   
+				       a[i][j]=v[k];
+					   k++;
+			 }//Fin del for
+					     }//Fin del paso 1
+	    paso++;
+ 
+ 
+	     if(paso==2){
+		       for(int j=0;j<grado;j++){
+			       if(a[j][grado-(i+1)]==0){
+
+			       a[j][grado-(i+1)]=v[k];
+				   k++;
+			       }//fin del for
+				      }//fin del paso 2
+ 
+	     paso++;
+	     if(paso==3){
+			  for(int j=grado-1;j>=0;j--){
+				 if(a[grado-(i+1)][j] == 0){
+				 a[grado-(i+1)][j]=v[k];
+				 k++;
+				 }//fin del for
+				 }//fin del paso 3
+		paso++;
+ 
+		if(paso==4){
+			    for(int j=grado-1;j>=0;j--){
+				    if(a[j][i] == 0){
+				    a[j][i]=v[k];
+					k++;
+				    }//fin del for
+				    }//fin del paso 4
+		paso=1;
+ 
+ 
+     }
+ 
+     }
+ }
+		}
+	}
+ }
+
+
+void main(){
+	int  m[20][20],n,x;
+	int aux[20][20];
+	int v[100],a;
+	cout<<"ingrese tamaño del matriz :";
+	cin>>n;
+	cargar1(m,n,n);
+	mostrar (m,n,n);
+	cout<<endl;
+	ordenarcaracol(m,n,v, a);
+	mostrar (m,n,n);
+	/*metervector(m,n,n,v,a);
+	
+	mostrar (m,n,n);
+	cout<<endl;
+	*/
+	getch();
+}
