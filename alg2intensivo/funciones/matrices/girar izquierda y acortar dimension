@@ -1,1 +1,90 @@
 
+#include <iostream>
+#include <conio.h>
+#include <stdio.h>
+
+using namespace std;
+void cargar1(int mat[20][20],int n,int m){
+	for(int i=0;i < n;i++){
+		for(int j=0;j < m;j++){
+		    cout<<"elemento ["<<i<<"]["<<j<<"]:"; 
+			cin>>mat[i][j];
+			
+		}
+	}
+}
+void mostrar(int mat[20][20],int n,int m){
+	cout<<endl;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+		    
+			cout<<" "<<mat[i][j]<<" ";
+		}
+		cout<<"\n";
+	}
+}
+void  izquierda(int mat[20][20], int fila, int columna){
+      cout<<"Ha girado la matriz a la izquierda"<<endl;
+	  int mTem[20][20];
+    int t=0;
+    for(int i = fila-1; i >-1; i--){
+        for(int j = 0; j <columna;j++){
+            mTem[t][j] = mat[j][i];
+        }
+		t=t+1;
+    }
+    for(int i = 0; i < fila; i++){
+        for(int j = 0; j < columna; j++){
+            mat[i][j] = mTem[i][j];
+            cout<<mat[i][j]<<"  ";
+        }
+        cout<<endl;
+    }
+}
+
+void cortar(int mat[20][20],int n,int m,int aux[20][20],int &a,int &b){
+	 
+	a=n-2;
+	b=m-2;
+	for(int i =0; i<a; i++){
+		for(int j = 0; j <b;j++){
+		aux[i][j]=mat[i+1][j+1];
+		}
+	}
+	
+}
+
+void intercambio(int &a,int &b){
+int aux;
+    aux=a;
+	a=b;
+	b=aux;
+}
+
+
+
+void mostrar(int v[] ,int n){
+for(int i=0;i<n;i++){
+	cout<<v[i]<<" ";
+}
+}
+
+
+
+
+
+
+void main(){
+	int  m[20][20],n,x;
+	int aux[20][20];
+	int v[100],a,b;
+	cout<<"ingrese tamaño del matriz :";
+	cin>>n;
+	cargar1(m,n,n);
+	mostrar (m,n,n);
+	cout<<endl;
+	  izquierda(m, n, n);
+	  cortar(m,n,n,aux,a,b);
+	  mostrar (aux,a,b);
+	getch();
+}
