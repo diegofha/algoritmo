@@ -6,80 +6,80 @@
  
 using namespace std;
 // Función para dividir el array y hacer los intercambios
-int divide(int *array, int start, int end) {
-    int left;
-    int right;
+int divide(int *array, int inicio, int fin) {
+    int izq;
+    int der;
     int pivot;
     int temp;
  
-    pivot = array[start];
-    left = start;
-    right = end;
+    pivot = array[inicio];
+    izq = inicio;
+    der = fin;
  
     // Mientras no se cruzen los índices
-    while (left < right) {
-        while (array[right] > pivot) {
-            right--;
+    while (izq < der) {
+        while (array[der] > pivot) {
+            der--;
         }
  
-        while ((left < right) && (array[left] <= pivot)) {
-            left++;
+        while ((izq < der) && (array[izq] <= pivot)) {
+            izq++;
         }
  
         // Si todavía no se cruzan los indices seguimos intercambiando
-        if (left < right) {
-            temp = array[left];
-            array[left] = array[right];
-            array[right] = temp;
+        if (izq < der) {
+            temp = array[izq];
+            array[izq] = array[der];
+            array[der] = temp;
         }
     }
  
     // Los índices ya se han cruzado, ponemos el pivot en el lugar que le corresponde
-    temp = array[right];
-    array[right] = array[start];
-    array[start] = temp;
+    temp = array[der];
+    array[der] = array[inicio];
+    array[inicio] = temp;
  
     // La nueva posición del pivot
-    return right;
+    return der;
 }
  
 // Función recursiva para hacer el ordenamiento
-void quicksort(int *array, int start, int end)
+void quicksort(int *array, int inicio, int final)
 {
     int pivot;
  
-    if (start < end) {
-        pivot = divide(array, start, end);
+    if (inicio < final) {
+        pivot = divide(array, inicio, final);
  
         // Ordeno la lista de los menores
-        quicksort(array, start, pivot - 1);
+        quicksort(array, inicio, pivot - 1);
  
         // Ordeno la lista de los mayores
-        quicksort(array, pivot + 1, end);
+        quicksort(array, pivot + 1, final);
     }
 }
 
 void main(){
 	int const MAX = 100;
-    int arraySize;
-cout << "Ingresa tamanyo: " << endl;
-    cin >> arraySize;
+    int n;
+cout << "Ingresa tamaño: " << endl;
+    cin >> n;
  
-    int a[100];
-	for (int i = 0; i < arraySize; i++) {
-        cin>> a[i];
+    int v[100];
+	for (int i = 0; i < n; i++) {
+        cin>> v[i];
     }
 
-	cout << "Array antes de ordenarse: " << endl;
-    for (int i = 0; i < arraySize; i++) {
-        cout << a[i] << " ";
+	cout << "vector antes de ordenarse: " << endl;
+    for (int i = 0; i < n; i++) {
+        cout << v[i] << " ";
     }
 	cout << endl << endl;
  
-    quicksort(a, 0, arraySize - 1);
-	 cout << "Array ordenado " << endl;
-    for (int i = 0; i < arraySize; i++ ){
-        cout << a[i] << "-";
+    quicksort(v, 0, n - 1);
+	 cout << "vector ordenado " << endl;
+    for (int i = 0; i < n; i++ ){
+        cout << v[i] << " ";
     }
  
     cout << endl << endl;
