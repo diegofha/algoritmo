@@ -1,0 +1,127 @@
+#include "iostream"
+#include "conio.h"
+
+using namespace std;
+void cargar(int v[],int n){
+
+	for(int i=0;i<n;i++){
+	cin>>v[i];
+
+	}
+	
+}
+
+
+
+void mostrar(int v[],int n){
+
+	for(int i=0;i<n;i++){
+	cout<<v[i]<<" ";
+
+	}
+}
+
+void selectionsort(int v[],int n){
+	int i;
+for ( i=0; i<n; i++)
+{
+ int  min=i;
+  for (int j=i+1; j<n; j++)
+  {
+    if(v[j]<v[min])
+    min=j;
+  }
+   int aux= v[i];
+  v[i] = v[min];
+  v[min] = aux;
+}
+}
+
+void mergesort(int v[],int size){
+int half1;
+int half2;
+//declarar el tamaño de la mitad del arreglo
+  if(size%2==0){
+  half1=size/2;
+  half2=size/2;
+  }else{
+	  half1=size/2 +1;
+	  half2=size/2;
+  }
+  //declara 2 vectores pequeños
+  int array1[100];
+  int array2[100];
+
+  //llena los dos vectores pequeños
+
+  for(int i=0;i<half1;i++){
+  
+	  array1[i]=v[i];
+  }
+  for(int i=half1;i<size;i++){
+  
+	  array2[i]=v[i];
+  }
+  //2. implementar ordenamiento de seleccion en array1 y array2
+  //declara un minimo y  un minimoindice de variable
+  int min,minIndex;
+  //enlazar los vectores
+  for(int start=0;start<half1;start++){
+  //asume que el minimo es el primer elemento
+	  min=array1[start];
+  //prueba sobre los demas arreglos para encontrar el elemento mas pequeño
+  for(int i=start+1;i<half1;i++){
+	  //si encontramos el elememto que es menor q el min ,lo preparamos
+	  if(array1[i]<min){
+	  
+		  min=array1[i];
+		  //guarda el indice del nuevo min elemento
+		  minIndex=i;
+	  }
+
+  }
+  //cambiar el indice del nuevo min elemento y el corriente
+  v[minIndex]=v[start];
+  v[start]=min;
+}
+  //array2
+  
+  //3. ahora,mezcla el array1 ordenado y array2 ordenado en un solo aarray 
+  //index por array1
+  int i1=0;
+  //index por array2
+  int i2;
+  //enlazar atravez de arreglo
+  for(int i=0;i<size;i++){
+  //compara el primer elemento de array1 y 2
+	  if(array1[i1]<=array2[i2] && i1<half1){
+	  
+		  v[i]=array1[i1];
+		  i1++;
+	  }else if(i2<half2){
+	  
+		  v[i]=array2[i2];
+		  i2++;
+	  }
+
+  }
+}
+
+
+
+
+void main()
+{
+	int f,c; 
+	int m[20][20],v[20];
+	cout<<"Cantidad filas:";
+	cin>>f;
+	cargar(v,f);
+	//selectionsort(v,f);
+	//mostrar(v,f);
+	cout<<endl;
+	mergesort(v, f);
+	mostrar(v,f);
+	getche();
+}
+
