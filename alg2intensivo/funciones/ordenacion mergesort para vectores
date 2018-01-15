@@ -1,0 +1,62 @@
+#include <iostream>
+#include <conio.h>
+#define MAX 20
+using namespace std;
+void mezclar(int  A[], int ini, int medio, int fin){
+	int temp[MAX];
+	int i, j, k;
+	i=ini;
+	j=medio+1;
+	k=ini;
+	while ((i<=medio)&&(j<=fin)){
+		if (A[i]<A[j]){
+			temp[k]=A[i];
+			i++;
+			k++;
+		}else{
+			temp[k]=A[j];
+			j++;
+			k++;
+		}
+	}
+	while(i<=medio){
+		temp[k]=A[i];
+		k++;
+		i++;
+	}
+	while(j<=fin){
+		temp[k]=A[j];
+		k++;
+		j++;
+	}
+	for(int h=ini; h<=fin; h++)
+		A[h]=temp[h];
+} 
+void mergesort(int  A[], int ini, int fin){
+
+	if(ini<fin){
+		int medio=(ini+fin)/2;
+		mergesort(A, ini, medio);
+		mergesort(A, medio+1, fin);
+		mezclar(A, ini, medio, fin);
+	}
+}
+
+void main(){
+	int n,v[50];
+	cout<<"ingrese tamaño del vector:";
+	cin>>n;
+	for(int i=0;i<n;i++){
+	cin>>v[i];
+	}
+	for(int i=0;i<n;i++){
+	cout<<v[i]<<" ";
+	}
+	mergesort(v, 0,n-1);
+	cout<<endl<<"ordenacion por mergesort\n";
+	for(int i=0;i<n;i++){
+	cout<<v[i]<<" ";
+	}
+	getch();
+
+}
