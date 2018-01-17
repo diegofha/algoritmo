@@ -1,0 +1,59 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+
+class punto{
+	int x;
+	int y;
+public :
+	punto(){
+	x=0;
+	y=0;
+	}
+
+	void setx(int a){
+	x=a;
+	}
+	void sety(int b){
+	y=b;
+	}
+	int getx(){
+	return x;
+	}
+	int gety(){
+	return y;
+	}
+	void mostrarcuadrante();
+	bool vertical(punto p1){
+	if(p1.gety()==y)return true;
+	else return false;
+	}
+	
+};
+
+void main(){
+punto p1,p2;
+int x1,y1,x2,y2;
+cout<<"\ningrese x:";
+cin>>x1;
+p1.setx(x1);
+cout<<"\ningrese y:";
+cin>>y1;
+p1.sety(y1);
+cout<<"\ningrese x:";
+cin>>x1;
+p2.setx(x1);
+cout<<"\ningrese y:";
+cin>>y1;
+p2.sety(y1);
+
+if(p1.vertical(p2))
+	cout<<"v";
+else
+	cout<<"f";
+
+	getch();
+}
+//REALIZAR CUANDO 3 PUNTOS ARMAN UN TRIANGULO ,CONSEGUIR PENDIENTE
