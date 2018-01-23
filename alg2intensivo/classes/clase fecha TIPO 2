@@ -1,0 +1,124 @@
+
+#include <string>
+#include <iostream>
+#include "conio.h"
+///FIJARSE EN LA CABECERA PARA QUE FUNCIONE EL PROGRAMA Y LEA VARIABLES TIPO STRING
+
+using namespace std;
+
+class fecha{
+
+private:
+	int dia,mes,anio;
+public:
+	fecha(int,int,int);
+	void cambiarfecha(int,int,int);
+	void mostrarfecha(void);
+	void setd(int);
+	void setm(int);
+	void seta(int);
+	int getd();
+	int getm();
+	int geta();
+	void sumafecha(fecha,fecha);
+	 ~fecha(void);
+};
+
+class diadefecha : public fecha{
+private:
+	string nombre;
+public:
+	diadefecha(int,int,int,string);
+	void mostrardia(void);
+};
+
+
+//implementacion
+
+void diadefecha::mostrardia(){
+	cout<<endl<<nombre;
+}
+    fecha::fecha(int d,int m,int a){
+		dia=d;
+		mes=m;
+		anio=a;
+	};
+	diadefecha::diadefecha(int d,int m,int a,string ndia) : fecha(d,m,a){
+	    nombre=ndia;
+	}
+
+
+
+	void fecha::cambiarfecha(int d,int m ,int a){
+	    dia=d;
+		mes=m;
+		anio=a;
+	};
+	void fecha::mostrarfecha(void){
+	cout<<"\nla fecha es : "<<dia<<"/"<<mes<<"/"<<anio;
+	}
+	
+	void fecha::sumafecha(fecha o,fecha o2 ){
+	int d,m,a,d2,m2,a2,d3,a3,m3;
+		d=o.getd();
+		m=o.getm();
+		a=o.geta();
+		d2=o2.getd();
+		m2=o2.getm();
+		a2=o2.geta();
+		d3=d+d2;
+		m3=m+m2;
+		a3=a+a2;
+		setd(d3);
+		setm(m3);
+		seta(a3);
+
+	}
+	void fecha::setd(int d){
+	dia=d	;
+	}
+	void fecha::setm(int m){
+	mes=m	;
+	}
+	void fecha::seta(int a){
+	anio=a	;
+	}
+	int fecha::getd(){
+		return(dia);
+	}
+	int fecha::getm(){
+		return mes;
+	}
+
+	int fecha::geta(){
+	return anio;
+	}
+	 fecha::~fecha(){
+	 }
+
+void main()
+{
+	int x,y,z;
+	fecha fe(0,0,0),f2(0,0,0),f3(0,0,0);
+	diadefecha a(0,0,0,"martes");
+	cout<<endl<<"ingrese dia :";
+	cin>>x;
+	cout<<endl<<"ingrese mes :";
+	cin>>y;
+	cout<<endl<<"ingrese anio :";
+	cin>>z;
+	fe.cambiarfecha(x,y,z);
+	fe.mostrarfecha();
+	cout<<endl<<"ingrese dia :";
+	cin>>x;
+	cout<<endl<<"ingrese mes :";
+	cin>>y;
+	cout<<endl<<"ingrese anio :";
+	cin>>z;
+	f2.cambiarfecha(x,y,z);
+	f2.mostrarfecha();
+	f3.sumafecha(fe,f2);
+	f3.mostrarfecha();
+	a.mostrardia();
+	getch();
+}
