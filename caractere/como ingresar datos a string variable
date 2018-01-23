@@ -1,0 +1,20 @@
+#include <string>
+#include <iostream>
+#include "conio.h"
+
+
+using namespace std;
+void cad(string b,string a){
+b=a;
+
+}
+void main(){
+	string name;
+	cin>>name;
+	cout<<"\nthe string is :"<<name;
+	name=name+ "down";
+	cout<<"\nthe other string is: "<<name;
+	
+	
+	getch();
+}
