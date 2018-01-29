@@ -1,0 +1,101 @@
+#include <iostream>
+#include <conio.h>
+#include <string>
+
+using namespace std;
+
+class cliente{
+private:
+	int id_cliente;
+	string nombre;
+	string paterno;
+	string materno;
+	int telf;
+	string direccion;
+
+public:
+	cliente(){
+	id_cliente=0;
+	nombre="";
+	paterno="";
+	materno="";
+	telf=0;
+	direccion="";
+	}
+	
+	void setidclient(int a){
+		id_cliente=a;
+	}
+	void setnombre(string _nombre){
+	nombre=_nombre;
+	}
+	void setpaterno(string _paterno){
+		paterno=_paterno;
+	}
+	void setmaterno(string _materno){
+		materno=_materno;
+	}
+	void settelf(int a){
+	telf=a;
+	}
+	void setdireccion(string dir){
+		direccion=dir;
+	}
+	int getidclient(){
+		return id_cliente;
+	}
+	string getnombre(){
+		return nombre;
+	}
+	string getpaterno(){
+		return paterno;
+	}
+	string getmaterno(){
+		return materno;
+	}
+	int gettelf(){
+	return telf;
+	}
+	string getdireccion(){
+	return direccion;
+	}
+	void leer(){
+		int i,t;
+	string m,p,n,d;
+	cout<<"id :";
+	cin>>i;
+	id_cliente=i;
+	cout<<"nombre :";
+	cin>>n;
+	nombre=n;
+	cout<<"paterno :";
+	cin>>p;
+	paterno=p;
+	cout<<"materno :";
+	cin>>m;
+	materno=m;
+	cout<<"ntelefono :";
+	cin>>t;
+	telf=t;
+	cout<<"direccion :";
+	cin>>d;
+	direccion=d;
+	}
+	void mostrar(){
+	cout<<"id :"<<id_cliente;
+	cout<<"\nnombre :"<<nombre;
+	cout<<"\npaterno :"<<paterno;
+	cout<<"\mmaterno :"<<materno;
+	cout<<"\ntelefono :"<<telf;
+	cout<<"\ndireccion :"<<direccion;
+	}
+
+
+};
+void main(){
+	cliente c,c1;
+	c.leer();
+	c.mostrar();
+	
+	getch();
+}
