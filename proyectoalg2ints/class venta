@@ -1,0 +1,71 @@
+#include <iostream>
+#include <conio.h>
+#include <string>
+
+using namespace std;
+class venta{
+private:
+	int id_venta;
+	float precio;
+	string fecha;
+	int detalle[100];
+public:
+	venta(){
+		id_venta=0;
+		precio=0;
+		fecha="";
+		
+	}
+	void setid(int a){
+		id_venta=a;
+	}
+	void setprecio(float a){
+		precio=a;
+	}
+	void setfecha(string f){
+	fecha=f;
+	}
+	void setdetalle(int x[],int n)
+	{
+		for(int i=0;i<n;i++){
+		detalle[i]=x[i];
+		}
+	}
+	int getidventa(){
+		return id_venta;
+	}
+	float getprecio(){
+	return precio;
+	}
+	string getfecha(){
+		return fecha;
+	}
+	int getdetalle(){
+	return detalle;
+	}
+	void leer(){
+		int i,n;
+		string f;
+		int d[100];
+		cout<<"id :";
+		cin>>i;
+		id_venta=i;
+		
+		cout<<"fecha :";
+		cin>>f;
+		fecha=f;
+	}
+
+	void mostrar(){
+		cout<<"id :"<<id_venta;
+		cout<<"\nfecha :"<<fecha;
+		cout<<"\nDetalle :";
+		cout<<"-------------------------------------------------------";
+		for(int i=0;detalle[i]==0;i+2){
+		
+		}
+
+	}
+
+
+};
