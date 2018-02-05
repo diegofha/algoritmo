@@ -1,0 +1,42 @@
+int diferencia(fecha f){
+	 int v[13];
+	 cargarv(v);
+	 int d,m,a,d2,m2,a2,j=0,cm=0,p;
+	 d=getd();
+	 m=getm();
+	 a=geta();
+	 d2=f.getd();
+	 m2=f.getm();
+	 a2=f.geta();
+	 /*if(a2>a){
+	 intercambio(f);
+	 }
+	 if(a>a2){*/
+	       dia=d-d2;
+		   
+		   if(dia<0){
+		   dia=dia*(-1);
+		   }
+		   cout<<endl<<dia;
+		   while(m!=m2){
+		   if(m<m2){
+		   cm=cm+v[m2];
+		   m2--;
+		   }else{
+		   cm=cm+v[m];
+		   m--;
+		   }
+		   }
+		   cout<<endl<<cm;
+		   dia=dia+cm;
+		   cout<<endl<<endl<<dia;
+		   anio=a-a2;
+		   if(anio<0){
+		   anio=anio*(-1);
+		   }
+		   if(anio>=1){
+			   dia=dia+(365*anio);
+		   }
+	 
+	 return dia;
+} 
